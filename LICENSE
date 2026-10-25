@@ -1,0 +1,222 @@
+FOURGEAI LABS PROPRIETARY SOFTWARE LICENSE
+
+Version 1.0
+
+Copyright © 2026 FourgeAI Labs / FourgeMan.
+All Rights Reserved.
+
+1. Definitions
+
+For purposes of this License:
+
+- "Author" means FourgeAI Labs, FourgeMan, and any authorized successor or rights holder.
+- "Software" means all source code, object code, documentation, assets, models, scripts, configuration files, and other materials distributed by the Author under or in connection with this License.
+- "Derivative Work" means any modification, adaptation, translation, enhancement, extension, fork, or other work based upon or incorporating any portion of the Software.
+- "Commercial Use" means any use of the Software intended to generate revenue, profit, compensation, monetary benefit, business advantage, or other financial benefit.
+- "Proceeds" means all gross revenue, payments, compensation, fees, donations, sponsorships, sales proceeds, licensing revenue, or other monetary consideration received in connection with an authorized fork, modification, Derivative Work, redistribution, or Commercial Use of the Software.
+
+2. Ownership and Reservation of Rights
+
+The Software, its source code, and all associated intellectual property rights are and shall remain the sole and exclusive property of the Author.
+
+Nothing in this License transfers, assigns, sells, or conveys ownership of the Software or any intellectual property rights to any other person or entity.
+
+All rights not expressly granted under this License are expressly reserved by the Author.
+
+3. Public Repository Access Does Not Grant Additional Rights
+
+The Software may be made publicly accessible through GitHub or another hosting service.
+
+Public availability, repository access, the ability to view source code, or the technical ability to clone or download the repository does not constitute permission or a license to fork, modify, adapt, redistribute, publish, sublicense, sell, commercially exploit, or create Derivative Works from the Software.
+
+Any such activity remains subject to the express written authorization requirements of this License.
+
+4. Limited Permitted Use
+
+Subject to continued compliance with this License, a person may:
+
+a) View and inspect the Software;
+
+b) Download and run the Software for personal evaluation, testing, research, educational, or other non-commercial purposes;
+
+c) Test the Software and identify bugs, vulnerabilities, defects, or other issues; and
+
+d) Submit bug reports, recommendations, proposed fixes, or other feedback to the Author.
+
+These permissions do not constitute permission to create or distribute modified versions of the Software.
+
+5. Forking, Modification, and Derivative Works
+
+Except as expressly authorized in writing by the Author, you may not:
+
+a) Fork the Software;
+
+b) Modify, adapt, or alter the Software;
+
+c) Create or distribute Derivative Works;
+
+d) Incorporate the Software into another product or service;
+
+e) Redistribute or republish the Software or modified versions of the Software;
+
+f) Sublicense or transfer rights in the Software; or
+
+g) Use the Software for Commercial Use.
+
+Any permission to perform one of these activities must be granted in writing by the Author prior to the activity taking place.
+
+Silence, repository access, discussion, correspondence, issue comments, pull requests, or the Author's failure to object shall not constitute authorization.
+
+6. Requests for Written Authorization
+
+Requests for permission to fork, modify, redistribute, commercially use, or otherwise exploit the Software must be submitted to:
+
+fourgeailabs@gmail.com
+
+The request should include:
+
+a) The requester's name or legal entity name;
+
+b) The purpose of the proposed use;
+
+c) A detailed description of the proposed modifications or use;
+
+d) The intended method of distribution;
+
+e) Whether any revenue or other financial benefit is expected; and
+
+f) Any other information reasonably requested by the Author.
+
+The Author retains sole discretion to approve or deny any request.
+
+Any approval may contain additional conditions, restrictions, attribution requirements, review requirements, financial obligations, donation requirements, or other terms.
+
+No authorization is effective unless expressly granted in writing by the Author.
+
+7. Mandatory Donation of Financial Proceeds
+
+No person or entity is authorized to retain financial gain derived from an authorized fork, modification, Derivative Work, redistribution, or Commercial Use of the Software unless the Author expressly agrees otherwise in a separate written agreement.
+
+Unless the Author expressly provides a different written arrangement, 100% of all Proceeds derived from an authorized use of the Software must be donated to a charitable, nonprofit, community, research, educational, humanitarian, or other cause selected by the Author.
+
+The specific cause and any additional donation requirements shall be identified by the Author in the written authorization granting permission.
+
+The recipient of the donation shall be selected solely by the Author, subject to any applicable legal requirements.
+
+7.1 No Retention of Proceeds
+
+The authorized user may not retain, divert, conceal, redirect, or otherwise personally benefit from any Proceeds subject to this Section.
+
+Unless otherwise expressly agreed in writing, the donation obligation applies to 100% of the gross Proceeds attributable to the authorized use.
+
+No deduction for personal profit, operating expenses, salaries, administrative costs, marketing expenses, or other business expenses shall reduce the amount required to be donated, except where the Author expressly agrees otherwise in writing.
+
+7.2 Proof of Donation
+
+Following each donation, the authorized user must provide the Author with reasonable documentary evidence establishing that the required donation was made.
+
+Such evidence may include, as applicable:
+
+- An official donation receipt;
+- A transaction confirmation;
+- A receipt issued by the receiving organization;
+- A bank or payment confirmation;
+- A publicly verifiable donation record; or
+- Other documentation reasonably sufficient to establish the amount, recipient, and date of the donation.
+
+Proof of donation must be sent to "fourgeailabs@gmail.com" within fourteen (14) calendar days after the donation is made, unless a different period is specified in the Author's written authorization.
+
+The proof must reasonably identify:
+
+a) The amount donated;
+
+b) The date of the donation;
+
+c) The recipient organization or cause; and
+
+d) The transaction or confirmation identifying the donation.
+
+The Author may reasonably request additional documentation where the information provided is insufficient to verify compliance.
+
+8. Attribution
+
+Any authorized Derivative Work or authorized redistribution must retain all original copyright notices and provide clear and prominent attribution to the Author.
+
+Unless otherwise authorized in writing, attribution must identify FourgeAI Labs / FourgeMan as the original author of the Software.
+
+Attribution must not falsely imply that the Author endorses, sponsors, maintains, or is otherwise affiliated with a Derivative Work or third-party product.
+
+9. Review and Approval of Authorized Modifications
+
+Where the Author grants written permission to modify or fork the Software, the Author may require the resulting modifications or Derivative Work to be submitted for review before publication, release, distribution, or Commercial Use.
+
+Where such a review requirement is included in the written authorization, the authorized user shall not publish, release, distribute, or commercially exploit the Derivative Work until the required review has been completed and any required approval has been provided in writing.
+
+A granted authorization does not automatically authorize subsequent modifications beyond the scope described in the authorization.
+
+10. No Implied Commercial License
+
+Nothing in this License grants a commercial license.
+
+Commercial Use is prohibited unless expressly authorized in writing by the Author.
+
+Any commercial authorization may be subject to additional requirements, including donation obligations, attribution, reporting, review, licensing fees, limitations on distribution, or other conditions established by the Author in writing.
+
+11. Compliance and Records
+
+Any person receiving written authorization under this License shall maintain reasonably sufficient records demonstrating compliance with the conditions of that authorization.
+
+Upon reasonable written request, the Author may request documentation necessary to verify compliance with the applicable authorization, including records concerning Proceeds and required donations.
+
+12. Termination
+
+Any permission granted under this License automatically terminates upon material violation of this License or any written conditions attached to an authorization.
+
+Upon termination, all rights granted to the violating party immediately cease.
+
+The affected party must immediately discontinue any unauthorized use, modification, distribution, Commercial Use, or other activity prohibited by this License.
+
+Termination does not eliminate any obligation that accrued before termination, including any outstanding financial, attribution, reporting, or donation obligations.
+
+13. No Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, ACCURACY, RELIABILITY, OR SUITABILITY FOR ANY PARTICULAR USE.
+
+THE AUTHOR DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE, SECURE, UNINTERRUPTED, OR FREE FROM DEFECTS.
+
+14. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE AUTHOR SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATING TO THE SOFTWARE, THIS LICENSE, OR THE USE OR INABILITY TO USE THE SOFTWARE.
+
+15. Governing Law and Venue
+
+This License shall be governed by and construed in accordance with the laws of the jurisdiction specified by the Author, without regard to conflict-of-law principles.
+
+Any dispute arising from or relating to this License shall be brought in the courts having jurisdiction in the applicable venue, to the extent permitted by law.
+
+16. Severability
+
+If any provision of this License is determined to be invalid, unlawful, or unenforceable, that provision shall be modified or limited to the minimum extent necessary to make it enforceable, and the remaining provisions shall remain in full force and effect.
+
+17. No Waiver
+
+Failure by the Author to enforce any provision of this License shall not constitute a waiver of the Author's right to enforce that provision or any other provision in the future.
+
+18. Entire Agreement
+
+This License constitutes the complete agreement governing the rights granted with respect to the Software, except for separate written authorization agreements executed by the Author.
+
+Any modification, exception, waiver, or additional permission must be made in writing by the Author.
+
+19. Contact
+
+All requests for permission, authorization, compliance documentation, donation receipts, and other licensing correspondence should be directed to:
+
+FourgeAI Labs / FourgeMan
+Email: fourgeailabs@gmail.com
+
+---
+
+Copyright © 2026 FourgeAI Labs / FourgeMan. All Rights Reserved.
+
+Unauthorized copying, modification, forking, redistribution, or Commercial Use is prohibited except as expressly authorized in writing under this License.

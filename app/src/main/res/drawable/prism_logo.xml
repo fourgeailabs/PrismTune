@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  PrismTune logo as a VectorDrawable.
+  A faceted prism refracting into sound-wave beams. This is an original mark:
+  it is NOT Plex's ">" logo, and it uses no Plex artwork.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Incoming beam -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:pathData="M2,40 L32,40" />
+    <!-- Prism body -->
+    <path
+        android:fillColor="#FFB020"
+        android:pathData="M54,10 L94,68 L14,68 Z" />
+    <!-- Inner facet -->
+    <path
+        android:strokeColor="#7A4A00"
+        android:strokeWidth="3"
+        android:pathData="M54,10 L54,68" />
+    <!-- Refracted sound beams -->
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M80,46 L106,32" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M80,54 L106,60" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M80,62 L106,88" />
+    <!-- Equalizer bars -->
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M24,100 L24,84" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M40,100 L40,74" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M56,100 L56,90" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M72,100 L72,70" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M88,100 L88,80" />
+</vector>

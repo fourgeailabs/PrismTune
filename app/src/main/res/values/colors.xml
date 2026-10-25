@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="prism_amber">#FFB020</color>
+    <color name="prism_amber_deep">#E8890C</color>
+    <color name="prism_charcoal">#14100C</color>
+    <color name="prism_surface">#1E1913</color>
+</resources>

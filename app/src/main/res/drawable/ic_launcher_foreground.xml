@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive launcher icon foreground: the PrismTune prism, centred in the
+  108dp safe zone. The background (ic_launcher_background.xml) is deep
+  charcoal, so the amber prism pops on the car launcher and the phone.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:pathData="M4,42 L32,42" />
+    <path
+        android:fillColor="#FFB020"
+        android:pathData="M54,14 L90,66 L18,66 Z" />
+    <path
+        android:fillColor="#FFD166"
+        android:pathData="M54,14 L54,66 L18,66 Z" />
+    <path
+        android:strokeColor="#7A4A00"
+        android:strokeWidth="3"
+        android:pathData="M54,14 L54,66" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M78,46 L104,34" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M78,54 L104,60" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M78,62 L104,86" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M26,98 L26,84" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M41,98 L41,74" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M56,98 L56,88" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M71,98 L71,70" />
+    <path
+        android:strokeColor="#FFB020"
+        android:strokeWidth="7"
+        android:pathData="M86,98 L86,80" />
+</vector>
