@@ -46,8 +46,8 @@ import com.fourgeailabs.prismtune.viewmodel.SignInState
  * The whole UI runs through [SafeDrivingLayout]: navigation, lists, playback
  * controls, sliders and the sign-in retry button all live in the left
  * (interactive) zone. The right strip shows only the current track's artwork
- * and title — no buttons, so nothing interactive can land under the Equinox
- * EV's top-right temperature gauge.
+ * and title — no buttons, so nothing interactive can land in the Equinox
+ * EV's top-right corner.
  *
  * Audio-only by design: no video surface, no video playback code anywhere.
  */

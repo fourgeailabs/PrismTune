@@ -60,7 +60,7 @@ fun NowPlayingScreen(vm: PrismViewModel, onBack: () -> Unit) {
             .verticalScroll(androidx.compose.foundation.rememberScrollState())
             .padding(16.dp),
     ) {
-        TopBar("Now Playing", onBack = onBack)
+        BackRow(onBack = onBack)
         if (track == null) {
             Text("Nothing playing yet. Pick something from Home or Library.", fontSize = 20.sp, color = PrismOnSurface)
             return
@@ -139,7 +139,8 @@ fun QueueScreen(vm: PrismViewModel, onBack: () -> Unit, onNowPlaying: () -> Unit
     val current by vm.playback.currentIndex.collectAsState()
     val recent by vm.recentlyPlayed.collectAsState()
     LazyColumn(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
-        item { TopBar("Up Next", onBack = onBack) }
+        item { BackRow(onBack = onBack) }
+        item { Text("Up Next", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = PrismOnSurface) }
         if (queue.isEmpty()) {
             item { Text("Queue is empty. Play something first.", fontSize = 20.sp, color = PrismOnSurface) }
         } else {
@@ -170,7 +171,8 @@ fun SettingsScreen(vm: PrismViewModel, onBack: () -> Unit) {
     val quality by vm.audioQuality.collectAsState()
     val lib by vm.library.collectAsState()
     LazyColumn(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
-        item { TopBar("Settings", onBack = onBack) }
+        item { BackRow(onBack = onBack) }
+        item { Text("Settings", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = PrismOnSurface) }
 
         item { Text("Server", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = PrismOnSurface) }
         itemsIndexed(lib.servers) { _, server ->
@@ -214,9 +216,9 @@ fun SettingsScreen(vm: PrismViewModel, onBack: () -> Unit) {
         item {
             Text(
                 "Interactive controls use the left ${(safeArea * 100).roundToInt()}% of the screen. " +
-                    "The rest is artwork only, so no button ever sits under the top-right " +
-                    "temperature gauge. Default is 80% (photo-calibrated; " +
-                    "temp reads at ~89% across, so this keeps a margin).",
+                    "The rest is artwork only, so no button ever sits in the " +
+                    "top-right corner of the display. Default is 80% " +
+                    "(photo-calibrated, keeping a margin before that corner).",
                 fontSize = 16.sp, color = PrismOnSurface, modifier = Modifier.padding(vertical = 8.dp),
             )
         }

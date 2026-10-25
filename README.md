@@ -19,8 +19,15 @@ with big, driving-safe controls and nothing to watch.
      `X-Plex-Product: PrismTune`, `X-Plex-Version`, and a per-car
      `X-Plex-Client-Identifier`.
   2. The car screen shows a 4-character code **and a QR code**.
+     The code is ONLY ever the one returned by that POST — if the call
+     fails, the screen shows a clear error and a Retry button, and NO
+     code and NO QR at all. No code is ever invented or fallen back to,
+     and there is no demo/sample music anywhere in the app: with no real
+     signed-in library, screens show honest empty states, never made-up
+     tracks.
   3. Scan the QR code with your phone (or open `plex.tv/link` by hand),
-     sign in to Plex on the phone, and type the code.
+     sign in to Plex on the phone, and type the code. The QR encodes
+     plain `https://plex.tv/link` only.
   4. PrismTune polls `GET https://plex.tv/api/v2/pins/{id}` every 2 seconds
      until an `authToken` arrives (timeout: 15 minutes, with Cancel/Retry).
   5. The token is stored with `EncryptedSharedPreferences` (with a private
@@ -37,8 +44,19 @@ with big, driving-safe controls and nothing to watch.
 - **Audio quality (Settings):** Original (direct play) or a transcode
   ceiling of 320 / 192 / 128 kbps via Plex's universal transcode endpoint.
   Applies to the next track started.
-- **Look:** dark charcoal theme, amber accent, the PrismTune prism mark on
+- **Look:** dark charcoal theme, amber accent, the PrismTune Vinyl Ring on
   the sign-in screen, Now Playing, and the launcher icon.
+- **Loading:** while the app is loading, while a link code is being
+  created, or while library data is loading, the Vinyl Ring spins
+  CLOCKWISE, like a record. It stops (static vinyl mark) as soon as
+  loading finishes — it never spins on Now Playing or other finished
+  screens, and never in the launcher icon, which cannot animate.
+- **No top chrome:** there is no TopBar header strip, no safe-boundary
+  badge, no clock, no temperature/weather readout, no version banner,
+  and no cockpit/CI/Play Store header in the app. Navigation is
+  in-content (NavRow on Home, an inline Back button only where a back
+  action exists). The safe area is still enforced silently by
+  `SafeDrivingLayout`.
 
 ## Driving safety — and the Equinox EV screen
 
@@ -64,12 +82,12 @@ tablet. PrismTune handles this in exactly one place:
 
 All tappable controls — navigation, lists, playback buttons, sliders, the
 sign-in Retry/Cancel buttons — live in the **left 80%** of the width.
-The top bar is drawn inside that zone too, so no interactive element
-ever sits in the top-right quadrant (x > 80%, top ~12% of height).
+There is no top bar at all, so no interactive element ever sits in the
+top-right quadrant (x > 80%, top ~12% of height).
 The remaining right strip is **display only**: large album artwork,
 now-playing text, and a decorative equalizer glow. It contains no buttons,
-no sliders, and no text fields, so no control can ever sit under the
-temperature gauge or require a glance at the top-right corner.
+no sliders, and no text fields, so no control can ever sit in the
+top-right corner or require a glance at it.
 
 **Tuning it:** Settings → "Equinox EV safe area" has a slider from
 55% to 85% (persisted, hard-capped at 85% — controls can never be pushed
@@ -147,8 +165,14 @@ edge more precisely, the default changes in the single constant above.
 ## Branding
 
 - Name: **PrismTune** — prism + tune. No "Plex" in the name.
-- Logo: a faceted prism refracting a beam into sound-wave / equalizer
-  beams, amber-orange gradient on deep charcoal. Distinct from Plex.
+- Logo / icon (chosen, 2026-10-25): the **Vinyl Ring** — Concept 3 from the
+  v3 full redesign, picked by Eric. A gold vinyl disc with concentric
+  grooves, a charcoal centre hole, and a gold centre dot, amber-orange
+  gradient on deep charcoal. Distinct from Plex. The v1 triangle/prism
+  mark and the v2 gem concepts (Slash Gem, Hex Prism, Play Prism) are
+  superseded and are not used anywhere in the app; their concept files
+  remain on disk only under `assets/branding/v2/` and `assets/branding/v3/`
+  and are not tracked in git.
 - Files:
   - `assets/branding/prismtune-logo.svg` — vector logo source
   - `assets/branding/prismtune-icon-1024.svg` — 1024px icon source (SVG)

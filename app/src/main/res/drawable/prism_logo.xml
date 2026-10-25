@@ -1,60 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  PrismTune logo as a VectorDrawable.
-  A faceted prism refracting into sound-wave beams. This is an original mark:
-  it is NOT Plex's ">" logo, and it uses no Plex artwork.
+  PrismTune logo as a VectorDrawable: the Vinyl Ring (Concept 3, v3 full
+  redesign, picked by Eric). A gold vinyl disc with concentric grooves,
+  a charcoal centre hole, and a gold centre dot. This is an original mark:
+  it is NOT Plex's ">" logo, and it uses no Plex artwork. The old
+  triangle/prism mark is gone.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="96dp"
     android:height="96dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- Incoming beam -->
-    <path
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="5"
-        android:pathData="M2,40 L32,40" />
-    <!-- Prism body -->
+    <!-- Vinyl disc -->
     <path
         android:fillColor="#FFB020"
-        android:pathData="M54,10 L94,68 L14,68 Z" />
-    <!-- Inner facet -->
+        android:pathData="M18,54 a36,36 0 1,0 72,0 a36,36 0 1,0 -72,0 Z" />
+    <!-- Gloss highlight, upper-left facet of the disc -->
     <path
-        android:strokeColor="#7A4A00"
-        android:strokeWidth="3"
-        android:pathData="M54,10 L54,68" />
-    <!-- Refracted sound beams -->
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.22"
+        android:pathData="M28,32 L54,25 L68,37 L44,47 Z" />
+    <!-- Grooves -->
     <path
-        android:strokeColor="#FFB020"
-        android:strokeWidth="7"
-        android:pathData="M80,46 L106,32" />
+        android:fillColor="#00000000"
+        android:strokeColor="#BE5F05"
+        android:strokeWidth="1"
+        android:pathData="M23,54 a31,31 0 1,0 62,0 a31,31 0 1,0 -62,0 Z" />
     <path
-        android:strokeColor="#FFB020"
-        android:strokeWidth="7"
-        android:pathData="M80,54 L106,60" />
+        android:fillColor="#00000000"
+        android:strokeColor="#BE5F05"
+        android:strokeWidth="1"
+        android:pathData="M28,54 a26,26 0 1,0 52,0 a26,26 0 1,0 -52,0 Z" />
     <path
-        android:strokeColor="#FFB020"
-        android:strokeWidth="7"
-        android:pathData="M80,62 L106,88" />
-    <!-- Equalizer bars -->
+        android:fillColor="#00000000"
+        android:strokeColor="#BE5F05"
+        android:strokeWidth="1"
+        android:pathData="M33,54 a21,21 0 1,0 42,0 a21,21 0 1,0 -42,0 Z" />
     <path
-        android:strokeColor="#FFB020"
-        android:strokeWidth="7"
-        android:pathData="M24,100 L24,84" />
+        android:fillColor="#00000000"
+        android:strokeColor="#BE5F05"
+        android:strokeWidth="1"
+        android:pathData="M38,54 a16,16 0 1,0 32,0 a16,16 0 1,0 -32,0 Z" />
+    <!-- Charcoal centre hole -->
     <path
-        android:strokeColor="#FFB020"
-        android:strokeWidth="7"
-        android:pathData="M40,100 L40,74" />
+        android:fillColor="#16120E"
+        android:pathData="M43,54 a11,11 0 1,0 22,0 a11,11 0 1,0 -22,0 Z" />
+    <!-- Gold centre dot -->
     <path
-        android:strokeColor="#FFB020"
-        android:strokeWidth="7"
-        android:pathData="M56,100 L56,90" />
-    <path
-        android:strokeColor="#FFB020"
-        android:strokeWidth="7"
-        android:pathData="M72,100 L72,70" />
-    <path
-        android:strokeColor="#FFB020"
-        android:strokeWidth="7"
-        android:pathData="M88,100 L88,80" />
+        android:fillColor="#FFC93D"
+        android:pathData="M50,54 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0 Z" />
 </vector>

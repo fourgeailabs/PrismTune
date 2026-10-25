@@ -61,20 +61,23 @@ import com.fourgeailabs.prismtune.viewmodel.SignInState
 /** Minimum touch target for every driving-safe control in this app. */
 val MinTouch = 76.dp
 
+/**
+ * Inline back control, in-content only — NOT a top header strip. There is
+ * deliberately no TopBar in this app: no safe-boundary badge, no clock,
+ * no temperature/weather readout, no version banner, no cockpit/CI/Play
+ * Store header, and no display-info strip at the top of any screen.
+ * Navigation lives in the content itself (NavRow on Home, and this back
+ * button only on screens that actually have a back action).
+ */
 @Composable
-fun TopBar(title: String, onBack: (() -> Unit)? = null) {
+fun BackRow(onBack: () -> Unit) {
     Row(
-        modifier = Modifier.fillMaxWidth().heightIn(min = MinTouch).padding(horizontal = 16.dp),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (onBack != null) {
-            IconButton(onClick = onBack, modifier = Modifier.size(MinTouch)) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = "Back", tint = PrismAmber)
-            }
+        IconButton(onClick = onBack, modifier = Modifier.size(MinTouch)) {
+            Icon(Icons.Filled.ArrowBack, contentDescription = "Back", tint = PrismAmber)
         }
-        PrismLogo(size = 44.dp)
-        Spacer(modifier = Modifier.size(12.dp))
-        Text(title, fontSize = 28.sp, fontWeight = FontWeight.Bold, color = PrismOnSurface)
     }
 }
 
@@ -187,8 +190,6 @@ fun SignInScreen(vm: PrismViewModel, state: SignInState, onDone: () -> Unit) {
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        TopBar("PrismTune")
-        Spacer(modifier = Modifier.height(8.dp))
         PrismLogo(size = 120.dp)
         Text("Your Plex music, in the car.", fontSize = 22.sp, color = PrismOnSurface)
         Spacer(modifier = Modifier.height(16.dp))
@@ -207,6 +208,10 @@ fun SignInScreen(vm: PrismViewModel, state: SignInState, onDone: () -> Unit) {
                 BigButton("Get link code") { vm.startSignIn() }
             }
             is SignInState.Creating -> {
+                // Loading state only: the vinyl spins clockwise here, and
+                // stops the moment a real code (or an error) replaces it.
+                LoadingVinyl(size = 160.dp)
+                Spacer(modifier = Modifier.height(12.dp))
                 Text("Getting your link code…", fontSize = 20.sp, color = PrismOnSurface)
             }
             is SignInState.Waiting -> {
@@ -258,7 +263,6 @@ fun HomeScreen(
 ) {
     val lib by vm.library.collectAsState()
     LazyColumn(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
-        item { TopBar("PrismTune") }
         item { NavRow(onHome = {}, onLibrary = onLibrary, onSearch = onSearch, onQueue = onQueue, onSettings = onSettings) }
         item {
             Text(
@@ -266,7 +270,14 @@ fun HomeScreen(
                 fontSize = 18.sp, color = PrismOnSurface, modifier = Modifier.padding(vertical = 8.dp),
             )
         }
-        if (lib.loading) item { Text("Loading…", fontSize = 20.sp, color = PrismAmber) }
+        if (lib.loading) {
+            item {
+                // Loading state only: spinning vinyl, replaced by the real
+                // library (or an honest error) once loading finishes.
+                LoadingVinyl(size = 120.dp)
+                Text("Loading your music…", fontSize = 20.sp, color = PrismAmber)
+            }
+        }
         lib.error?.let { item { Text(it, fontSize = 16.sp, color = Color(0xFFFF6B6B)) } }
         item { Text("Recently added", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = PrismOnSurface) }
         items(lib.recent.take(6)) { track ->
@@ -307,8 +318,13 @@ fun PlaylistRow(playlist: PlexPlaylist, artworkUrl: String?, onClick: () -> Unit
 fun LibraryScreen(vm: PrismViewModel, onNowPlaying: () -> Unit, onBack: () -> Unit) {
     val lib by vm.library.collectAsState()
     LazyColumn(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
-        item { TopBar("Library", onBack = onBack) }
-        if (lib.loading) item { Text("Loading…", fontSize = 20.sp, color = PrismAmber) }
+        item { BackRow(onBack = onBack) }
+        if (lib.loading) {
+            item {
+                LoadingVinyl(size = 120.dp)
+                Text("Loading…", fontSize = 20.sp, color = PrismAmber)
+            }
+        }
         lib.error?.let { item { Text(it, fontSize = 16.sp, color = Color(0xFFFF6B6B)) } }
         item { Text("Artists", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = PrismOnSurface) }
         item {
@@ -380,7 +396,7 @@ fun SearchScreen(vm: PrismViewModel, onNowPlaying: () -> Unit, onBack: () -> Uni
     var query by remember { mutableStateOf("") }
     val lib by vm.library.collectAsState()
     LazyColumn(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
-        item { TopBar("Search", onBack = onBack) }
+        item { BackRow(onBack = onBack) }
         item {
             Text(
                 "Tip: type while parked. While driving, use Home, Library, or Queue instead.",

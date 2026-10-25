@@ -84,7 +84,12 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 val pin = client.createPin(deviceId)
                 if (pin.code.isBlank()) throw IllegalStateException("Plex returned an empty link code.")
-                val linkUrl = PlexUrls.linkUrlForCode(pin.code)
+                // The QR encodes plain https://plex.tv/link ONLY — the
+                // code itself is shown as text for the user to type, and
+                // is never invented, guessed, or fallen back to. If this
+                // POST fails, the catch below shows an error and NO code
+                // and NO QR are ever displayed.
+                val linkUrl = PlexUrls.LINK_URL
                 _signIn.value = SignInState.Waiting(
                     code = pin.code,
                     qrBitmap = QrCode.render(linkUrl, 640),
@@ -103,7 +108,7 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
                             return@launch
                         }
                     }
-                    _signIn.value = SignInState.Error("Link code expired. Tap Retry for a fresh code.")
+                    _signIn.value = SignInState.Error("Link code expired. Tap Get link code for a fresh code.")
                 }
             } catch (e: Exception) {
                 _signIn.value = SignInState.Error("Could not reach Plex: ${e.message}")

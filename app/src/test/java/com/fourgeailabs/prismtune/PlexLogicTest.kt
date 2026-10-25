@@ -63,8 +63,10 @@ class PlexLogicTest {
     }
 
     @Test
-    fun linkUrlEncodesCode() {
-        assertEquals("https://plex.tv/link?code=ABCD", PlexUrls.linkUrlForCode("ABCD"))
+    fun qrLinkIsPlainPlexLink() {
+        // The QR must encode plain plex.tv/link — never a code-bearing
+        // URL, and never anything else. The code is shown as text to type.
+        assertEquals("https://plex.tv/link", PlexUrls.LINK_URL)
     }
 
     @Test

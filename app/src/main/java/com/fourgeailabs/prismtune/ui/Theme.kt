@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 /** PrismTune dark theme. Amber-orange accent on deep charcoal — Plex-adjacent
- *  warmth, but its own palette and its own prism mark (see PrismLogo). */
+ *  warmth, but its own palette and its own vinyl mark (see PrismLogo). */
 val PrismAmber = Color(0xFFFFB020)
 val PrismAmberDeep = Color(0xFFE8890C)
 val PrismCharcoal = Color(0xFF14100C)

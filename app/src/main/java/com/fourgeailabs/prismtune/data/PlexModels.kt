@@ -82,9 +82,9 @@ object PlexUrls {
     const val PLEX_TV = "https://plex.tv"
     const val LINK_URL = "https://plex.tv/link"
 
-    /** The URL a phone should open after scanning the car's QR code. */
-    fun linkUrlForCode(code: String): String = "$LINK_URL?code=${code.trim()}"
-
+    /** The URL a phone should open after scanning the car's QR code.
+     *  Deliberately plain https://plex.tv/link — the QR never encodes
+     *  anything else, and the link code itself is shown as text to type. */
     fun join(base: String, path: String): String {
         val b = base.trimEnd('/')
         val p = if (path.startsWith("/")) path else "/$path"

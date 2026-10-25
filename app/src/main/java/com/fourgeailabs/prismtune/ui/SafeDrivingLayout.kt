@@ -22,15 +22,15 @@ import com.fourgeailabs.prismtune.data.SafeAreaConfig
  *  - Every tappable control lives inside [interactiveContent], which is
  *    constrained to the LEFT [safeAreaFraction] of the width (default 80%,
  *    adjustable in Settings between 55% and 85%, hard-capped at 85%).
- *    The top bar is drawn inside this zone too, so no interactive element
- *    ever sits in the top-right quadrant (x > 80%, top ~12% of height)
- *    where the Equinox EV shows the temperature and clock.
+ *    No interactive element ever sits in the top-right quadrant
+ *    (x > 80%, top ~12% of height).
  *  - The remaining right strip ([ambientContent]) is DISPLAY ONLY: large
  *    artwork, now-playing text, a visualizer-style glow. It contains NO
  *    buttons, NO sliders, NO text fields — nothing a driver could tap by
- *    accident near the climate gauge, and nothing that needs a glance at
- *    the top-right corner.
- *  - The top bar is drawn inside the interactive zone for the same reason.
+ *    accident, and nothing that needs a glance at the top-right corner.
+ *  - This zone is enforced SILENTLY by this layout. There is no top bar,
+ *    no boundary badge, no clock, and no temperature/weather readout in
+ *    the UI to explain it.
  *
  * To recalibrate from a straight-on photo of the real display, change
  * ONE value — SafeAreaConfig.DEFAULT_FRACTION — or move the Settings slider.
