@@ -6,7 +6,7 @@ Unofficial project. Not affiliated with or endorsed by Plex Inc.
 
 ## Full disclosure
 
-This app was written entirely by AI. Every line of code came out of a language model, working from plain-English requests and photos of a car screen. A human tests it on real hardware and decides what ships. It works, but you should know what it is before you run it.
+This app was written entirely by AI. Every line of code came out of a language model (Meta Muse — the work started on the free version), working from plain-English requests and photos of a car screen. A human tests it on real hardware and decides what ships. It works, but you should know what it is before you run it.
 
 ## What it does
 
@@ -58,4 +58,4 @@ Everything stays on the device. The app talks to plex.tv (for sign-in) and to yo
 
 ## License
 
-See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
+MIT — see [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md). Fork it, change it, build your own version for your car and your server. If your version does something better, a pull request or a note about what you changed is appreciated, but it's not required.
