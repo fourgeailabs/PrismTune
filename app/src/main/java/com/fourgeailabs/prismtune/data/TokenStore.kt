@@ -170,7 +170,7 @@ class SettingsStore(context: Context) {
         set(value) { prefs.edit().putString(KEY_DEVICE, value).apply() }
 
     /** 1.1.0: auto Offline Top Picks on/off (default on). No
-     *  Wi-Fi gate: per Eric's correction, downloads and refresh
+     *  Wi-Fi gate: per the user's correction, downloads and refresh
      *  may run on mobile data as well as Wi-Fi. */
     var autoOffline: Boolean
         get() = prefs.getBoolean(KEY_AUTO_OFFLINE, true)

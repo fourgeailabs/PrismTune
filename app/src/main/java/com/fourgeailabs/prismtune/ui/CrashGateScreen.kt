@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
  * (launch marker still present). It uses NO ViewModel, NO
  * player, NO library load, NO media service, NO Coil — just
  * plain files and prefs — so it can draw even when the full
- * app cannot launch. From here Eric can copy the crash that
+ * app cannot launch. From here the user can copy the crash that
  * killed the last launch, clear the saved queue or the
  * metadata cache without signing out, and then try a normal
  * launch. If the normal launch dies before drawing again,

@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import com.fourgeailabs.prismtune.viewmodel.PrismViewModel
 
 /**
- * 1.5.6 CRASH LOGS SCREEN — Eric, 2026-10-27 05:42:
+ * 1.5.6 CRASH LOGS SCREEN — 2026-10-27 05:42:
  * crash logs must NOT sit free-falling through the
  * bottom of Settings. Settings now has a single
  * "Open crash logs" button; this screen holds the
@@ -140,19 +140,19 @@ private data class WhatsNewEntry(val version: String, val date: String, val body
 private val whatsNewEntries = listOf(
     WhatsNewEntry(
         "1.5.9", "Oct 27, 2026",
-        "Thumbs up and thumbs down now toggle. Tap an already-selected thumb a second time and it unselects, leaving the song neutral — neither liked nor disliked — so a changed mind doesn't need a reset. Un-liking never pops the download prompt, and un-disliking lets the song back into Curated by Me! and Recommended.",
+        "Thumbs up and thumbs down now toggle. Tap a selected thumb again to unselect it and leave the song neutral. Un-liking doesn't pop the download prompt, and un-disliking lets a song back into Curated by Me! and Recommended.",
     ),
     WhatsNewEntry(
         "1.5.8", "Oct 27, 2026",
-        "Downloads, fixed properly. The download request is now a big pop-up in the middle of the screen — not a row at the bottom — with big Yes please and Hell no buttons; it appears from the Download button (which now only asks, never downloads on a bare tap) and from a thumbs up. The Downloaded to car label now means YOU asked for it: before, it read mere file existence, so songs the playback buffer or Offline Top Picks had silently downloaded showed as downloaded even though you never asked. Settings > Manage downloads is a new menu listing every song file on the car, tagged Yours or Buffered, with a Delete button per song and a Delete all button (second tap to confirm; the song currently playing is kept so playback never breaks). New Home card: Curated by Me! — your liked songs first, then songs that sound like them, with thumbs-down songs never in it; thumbs up and down now also steer the Recommended playlist. The old Clear downloads button is replaced by Manage downloads. Settings also gains two separate resets — Reset liked songs and Reset disliked songs, each two taps to confirm — so you can throw away one side of the curation without touching the other, and every song listed in the Curated by Me! card gets its own thumbs-down button to kick just that song out.",
+        "Downloads got reworked. Asking to download a song now opens a big pop-up in the middle of the screen — Yes please or Hell no — instead of a small row at the bottom. The Downloaded to car label only counts songs you actually asked for; songs that were only in the playback buffer no longer pretend to be downloads. Settings has a Manage downloads screen that lists every file, tagged Yours or Buffered, with a delete button per song and a delete-all (two taps, and the song currently playing is kept). New on Home: the Curated by Me! card, built from your thumbs up, with a thumbs-down button on each song to kick just that one out, and separate Reset liked songs / Reset disliked songs buttons in Settings.",
     ),
     WhatsNewEntry(
         "1.5.7", "Oct 27, 2026",
-        "Cold-boot play fixed: pressing play on the mini player (or Now Playing) right after opening the app now actually plays the restored song, instead of doing nothing. The cause was the metadata-only cold-boot restore never telling the player the server connection, so play on an empty player was a silent no-op; the connection is now recorded on restore, and a tap made before the library finishes loading is honoured when the load lands (within 30 seconds). New in Settings > Colour palette: Keep current colours snapshots the exact colourway on screen right now — including a Now Playing artwork colourway — and locks it in as a fixed palette called Kept, so the next track's artwork can no longer change it and it survives restarts.",
+        "Fixed cold-boot play: pressing play on the mini player right after opening the app now plays the restored song instead of doing nothing. New in Settings: Keep current colours locks the colourway on screen as a fixed palette, so it survives restarts and track changes.",
     ),
     WhatsNewEntry(
         "1.5.6", "Oct 27, 2026",
-        "Settings rebuilt: server, colour palette, audio quality and Equinox EV safe area are now their own expandable sections, sign out is at the very bottom, crash logs live behind an Open crash logs button, and this What's New page plus GitHub and Play Store links are in About. Mini-player play/pause is visible again (its icon tint was inverted), Settings button text stays readable on artwork backgrounds, and Recently Added is gone from Home. Smart playlists (Tracks, Fresh, Recently Played) now try every load path before reporting empty, and Home's Recently Played records every song the player lands on, not just manual plays. Main player gains a Download to car button and thumbs up / thumbs down: a thumbs up asks whether to also download that song, a thumbs down keeps the track out of recommendations and queue fills. The Up Next panel's Following list is now 20sp instead of 14sp small print, so it reads at a glance in the car.",
+        "Settings rebuilt as expandable sections, with crash logs and this What's New page behind their own buttons. The main player gained a Download button and thumbs up/down, smart playlists load properly instead of reporting empty, Recently Played now records every song the player lands on, and the Up Next list is in bigger type.",
     ),
     WhatsNewEntry(
         "1.5.5", "Oct 27, 2026",
@@ -160,7 +160,7 @@ private val whatsNewEntries = listOf(
     ),
     WhatsNewEntry(
         "1.5.4", "Oct 27, 2026",
-        "Moods now come from real Plex tags only, counted in songs not albums, with no genre guessing. New scrolling Plex Amp-style grid (2 columns on phone, 3 in the car, alphabetical) plus a mood search bar, and Plex's own server mood list as the primary source with scan terms as fallback.",
+        "Moods now come from your server's real Mood and Style tags, counted per song, with no genre guessing. Scrolling grid in the app's own theme, plus a search bar for moods.",
     ),
     WhatsNewEntry(
         "1.5.3", "Oct 27, 2026",
@@ -172,15 +172,15 @@ private val whatsNewEntries = listOf(
     ),
     WhatsNewEntry(
         "1.5.1", "Oct 27, 2026",
-        "Now Playing fits without scrolling, artwork background follows the track in Now Playing colours mode, Up Next expands to 100 after a cold-open resume, and the mini-player waveform matches Now Playing with tap-to-seek.",
+        "Now Playing fits on one screen, Up Next expands to 100 songs after resuming, and the mini-player waveform matches Now Playing, with tap-to-seek.",
     ),
     WhatsNewEntry(
         "1.5.0", "Oct 27, 2026",
-        "Media-source listing fix, Now Playing fit, true dominant-colour palettes, exact-match mood counts, matte borderless mood cards, and waveform spectrum fixes.",
+        "Media-source listing fix, true dominant-colour palettes from artwork, exact-match mood counts, matte mood cards, and waveform fixes.",
     ),
     WhatsNewEntry(
         "1.4.2", "Oct 27, 2026",
-        "Fixed the car launch loop: browsable media items now declare themselves correctly, so the Equinox media browser no longer kills the app on open. Instrument cluster and steering-wheel controls work.",
+        "Fixed the car launch loop. The app opens on the Equinox EV again, and the instrument cluster and steering-wheel controls work.",
     ),
     WhatsNewEntry(
         "1.3.x", "Oct 26, 2026",
@@ -201,7 +201,7 @@ private val whatsNewEntries = listOf(
 )
 
 /**
- * 1.5.6 WHAT'S NEW PAGE — Eric, 2026-10-27 05:42:
+ * 1.5.6 WHAT'S NEW PAGE — 2026-10-27 05:42:
  * an accordion-style update history, right here in the
  * app. Tap a version to expand it, tap again to close.
  */
@@ -237,7 +237,7 @@ fun WhatsNewScreen() {
 }
 
 /**
- * 1.5.6 ABOUT LINKS — Eric, 2026-10-27 05:42: the About
+ * 1.5.6 ABOUT LINKS — 2026-10-27 05:42: the About
  * section must link the GitHub repo, the Forge AI Labs
  * GitHub home, and the Play Store page, and name the
  * GitHub username. Used by SettingsScreen's About section.
@@ -263,7 +263,7 @@ fun AboutLinks() {
 }
 
 /**
- * 1.5.8 DOWNLOADS SCREEN — Eric, 2026-10-27 08:15:
+ * 1.5.8 DOWNLOADS SCREEN — 2026-10-27 08:15:
  * a menu in Settings to delete specific downloads, plus
  * a button that deletes all of them. Every file on disk
  * lists here, tagged "Yours" (the user asked for it via

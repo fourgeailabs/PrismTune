@@ -58,7 +58,7 @@
              previous from the wheel had no session to reach. -->
         <!-- 1.5.0 MEDIA SOURCE: GM's infotainment media menu
              (AM/FM/SiriusXM/Bluetooth/USB/Apple Music/News in
-             Eric's 2026-10-27 photo) lists MediaBrowserServices
+             the user's 2026-10-27 photo) lists MediaBrowserServices
              it can browse. PrismTune was missing from that list
              even after the 1.4.2 root fix, while cluster +
              steering wheel worked — meaning the session was
@@ -77,8 +77,8 @@
              Honest limit: if GM's menu is a closed allow-list
              (system apps + CarPlay only), no manifest change
              in a third-party app can force a listing — that
-             would need GM/car-system approval, and Eric
-             should tell us if 1.5.0 still does not appear
+             would need GM/car-system approval. (Field note:
+             report back if 1.5.0 still does not appear
              after a car reboot, which re-scans services. -->
         <service
             android:name=".playback.PrismTuneMediaService"

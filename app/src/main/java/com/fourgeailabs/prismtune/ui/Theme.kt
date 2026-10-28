@@ -13,7 +13,7 @@ import kotlin.math.roundToInt
 
 /**
  * 1.2.0 colour palettes. The app was dark-only (charcoal + amber);
- * Eric asked for brighter, matte colourways, a Settings picker,
+ * The brief: brighter, matte colourways, a Settings picker,
  * and a Now Playing mode where the accent follows the current
  * track. Palettes are matte: flat surfaces, no gradient wash.
  *
@@ -118,7 +118,7 @@ val PrismOnSurface: Color get() = PrismPaletteState.current.onSurface
 val PrismSecondary: Color get() = PrismPaletteState.current.secondary
 
 /**
- * 1.5.2 LIGHT-ON-DARK CLICKABLES — Eric, 2026-10-27
+ * 1.5.2 LIGHT-ON-DARK CLICKABLES — 2026-10-27
  * 02:52, photo of Now Playing on a dark blue background:
  * the off-state buttons (shuffle off, repeat off, prev,
  * next) were dark blue/grey on dark blue — nearly
@@ -138,7 +138,7 @@ val PrismOffIcon: Color get() = if (PrismPaletteState.current.isLight) Color(0xF
 /**
  * Accent guaranteed visible on the current background: if the
  * accent's luminance is low (a dark artwork colour on a dark
- * background, e.g. Curtis blue on dark blue in Eric's photo),
+ * background, e.g. Curtis blue on dark blue in the user's photo),
  * use white instead — a dark accent on a dark background is
  * invisible no matter how "on brand" it is. On light
  * backgrounds the accent is kept as-is.
@@ -185,7 +185,7 @@ fun dynamicAccentForTrack(title: String, artist: String): Color {
 
 /**
  * 1.5.1 WAVEFORM COLOURS — SUPERSEDED in 1.5.5 for the
- * played colour only (see progressColor below): Eric
+ * played colour only (see progressColor below):
  * corrected his 02:16 "complimentary colour" instruction
  * on 2026-10-27 05:38, because the complement clashed.
  * Unplayed white/black is unchanged.
@@ -215,7 +215,7 @@ fun waveformBaseColor(isLightBackground: Boolean): Color =
 
 fun complementaryColor(color: Color): Color {
     // RETIRED in 1.5.5 — DO NOT USE for the waveform.
-    // Eric, 2026-10-27 05:38, with a car photo: the played
+    // 2026-10-27 05:38, with a car photo: the played
     // bars were light blue on a deep-red screen and clashed
     // badly, and progress was hard to read at a glance.
     // That light blue WAS this function's output: the
@@ -225,7 +225,7 @@ fun complementaryColor(color: Color): Color {
     // colour is by definition the one colour that clashes
     // most with the background. Kept only as a record;
     // waveformBarColor() now uses progressColor() below.
-    // 1.5.3 BUG FIX — Eric, 2026-10-27 04:28: "The wave
+    // 1.5.3 BUG FIX — 2026-10-27 04:28: "The wave
     // form doesn't change colors as the song progresses."
     // The old version kept the background's own saturation
     // AND value, so the complement of a DARK background was
@@ -284,7 +284,7 @@ fun blendColors(base: Color, target: Color, frac: Float): Color {
 }
 
 /**
- * 1.5.5 HARMONIOUS PROGRESS COLOUR — Eric, 2026-10-27
+ * 1.5.5 HARMONIOUS PROGRESS COLOUR — 2026-10-27
  * 05:38, car photo (deep-red "Friends in Low Places"
  * screen): "I like the white against the red. That does
  * look clean. However the progress bar section, where
@@ -350,7 +350,7 @@ fun progressColor(background: Color, isLightBackground: Boolean): Color {
  * in full immediately (same marching-right rule as 1.5.3:
  * WHICH bars are coloured carries the progress, not a
  * fade). Unplayed bars are unchanged: white on dark,
- * black on light, exactly as Eric liked in his photo.
+ * black on light, as in the reference photos.
  * Height is still the live FFT spectrum, unchanged.
  */
 fun waveformBarColor(

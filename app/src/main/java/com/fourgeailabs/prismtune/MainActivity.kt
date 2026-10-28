@@ -268,7 +268,7 @@ class MainActivity : ComponentActivity() {
                                     } else null
                                 }.getOrNull()
                             }
-                            // 1.5.1 BACKGROUND FIX — Eric, 2026-10-27
+                            // 1.5.1 BACKGROUND FIX — 2026-10-27
                             // 02:18: "The background doesn't change
                             // colors at all. Still a reddish brown."
                             // Two causes, both real: (1) the DEFAULT
@@ -303,7 +303,7 @@ class MainActivity : ComponentActivity() {
                                     // background — a slightly lightened darkBg — not a
                                     // mix with Amber's brown surface, which is what made
                                     // cards float as grey/brown boxes on a teal background
-                                    // in Eric's 02:54 Home photo. Secondary is light
+                                    // in the user's 02:54 Home photo. Secondary is light
                                     // warm grey on dark, so body text reads white-ish,
                                     // not mid-teal/grey.
                                     surface = if (base.isLight) base.surface else com.fourgeailabs.prismtune.data.lightenColor(darkBg, 1.35f),
@@ -355,7 +355,7 @@ class MainActivity : ComponentActivity() {
                         if (token != null) {
                             // 1.3.7: tapping a top menu option ALWAYS
                             // goes to that section's MAIN screen, fresh.
-                            // Eric, 2026-10-26 23:50: from Moods -> Now
+                            // 2026-10-26 23:50: from Moods -> Now
                             // Playing, tapping Moods did not bring back
                             // the Moods home page, and so on. The old
                             // goTo used restoreState=true, which could
@@ -547,7 +547,7 @@ class MainActivity : ComponentActivity() {
                                     }
                                 } else it
                             }
-                            // 1.5.1 PANEL FILL — Eric, 2026-10-27
+                            // 1.5.1 PANEL FILL — 2026-10-27
                             // 02:25, photo of the Up Next panel:
                             // a small centred cluster (header +
                             // artwork + one line) floating in a
@@ -594,7 +594,7 @@ class MainActivity : ComponentActivity() {
                                         // actual playback order.
                                         val following = vm.playback.upNextIndices(11).drop(1)
                                             .mapNotNull { queue.getOrNull(it) }
-                                        // 1.5.6 — Eric, 2026-10-27 05:56, photo of
+                                        // 1.5.6 — 2026-10-27 05:56, photo of
                                         // this panel: the Following rows were
                                         // 14sp small print. Now 20sp, matching
                                         // track titles elsewhere, so the list
@@ -625,7 +625,7 @@ class MainActivity : ComponentActivity() {
                                     // so offer that here instead of
                                     // only saying nothing is up next.
                                     // 1.5.1: this was the worst dead
-                                    // space in Eric's photo — vinyl +
+                                    // space in the user's photo — vinyl +
                                     // two lines in a huge panel. Fill
                                     // it with the queue context: what
                                     // is playing now, where it came
@@ -654,7 +654,7 @@ class MainActivity : ComponentActivity() {
                                     val waveform by vm.playback.waveformLevels.collectAsState()
                                     val panelPosition by vm.playback.positionMs.collectAsState()
                                     val panelDuration by vm.playback.durationMs.collectAsState()
-                                    // 1.5.1 MINI-PLAYER WAVEFORM — Eric,
+                                    // 1.5.1 MINI-PLAYER WAVEFORM —
                                     // 2026-10-27 02:23: "We need the same
                                     // exact progress bar/wave form for
                                     // the mini player on the right as
@@ -719,7 +719,7 @@ class MainActivity : ComponentActivity() {
                                                 Icon(
                                                     if (isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
                                                     contentDescription = if (isPlaying) "Pause" else "Play",
-                                                    // 1.5.6 BUG FIX — Eric, 2026-10-27 05:42,
+                                                    // 1.5.6 BUG FIX — 2026-10-27 05:42,
                                                     // car photo: the mini-player play/
                                                     // pause was "just a straight-up
                                                     // white dot". Cause: this tint was

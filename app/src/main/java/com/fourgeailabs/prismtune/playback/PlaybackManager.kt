@@ -152,7 +152,7 @@ class PlaybackManager(context: Context) {
     }
 
     /** 1.3.4: NEVER use startForegroundService again.
-     *  PROVEN CRASH, from Eric's 1.3.3 crash log, 2026-10-26
+     *  PROVEN CRASH, from the user's 1.3.3 crash log, 2026-10-26
      *  23:06:52, Pixel 10 Pro XL, Android 17, main thread:
      *  ForegroundServiceDidNotStartInTimeException —
      *  Context.startForegroundService() did not then call
@@ -608,7 +608,7 @@ class PlaybackManager(context: Context) {
             if (player.isPlaying) {
                 player.pause()
             } else {
-                // 1.5.0 PLAY/PAUSE DEAD BUTTON FIX: Eric,
+                // 1.5.0 PLAY/PAUSE DEAD BUTTON FIX:
                 // 2026-10-27 — mini-player and Now Playing
                 // play/pause sometimes did nothing, then
                 // started working after selecting a mood.

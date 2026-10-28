@@ -28,7 +28,7 @@ class ConnectionFallbackTest {
 
     @Test
     fun orderedIsRemoteFirstLocalSecondRelayThirdEvenWhenLocalWorkedLast() {
-        // Eric's correction: remote is PRIMARY for a car, even on
+        // the user's correction: remote is PRIMARY for a car, even on
         // home Wi-Fi; a recently-working local connection does NOT
         // promote local above remote.
         assertEquals(

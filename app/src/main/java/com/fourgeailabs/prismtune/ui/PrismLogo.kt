@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 
 /**
  * The PrismTune mark: the Vinyl Ring (Concept 3, v3 full redesign, picked
- * by Eric). A gold vinyl disc with concentric grooves, a charcoal centre
+ *). A gold vinyl disc with concentric grooves, a charcoal centre
  * hole, and a gold centre dot. Drawn in code so the logo, the launcher
  * icon, and the splash all match. The old triangle/prism mark is gone.
  */

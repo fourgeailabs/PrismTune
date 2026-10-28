@@ -45,7 +45,7 @@ object SafeAreaConfig {
 
 /**
  * Measured usable area of the 2025 Equinox EV infotainment display
- * (Eric, tape-measured, final figures). This is the APP-USABLE area, not
+ * (tape-measured, final figures). This is the APP-USABLE area, not
  * the advertised full-glass spec, and the layout is coded to it.
  * Height is only 4.875 in, so layouts must stay low and wide.
  */
@@ -179,7 +179,7 @@ object ConnectionPicker {
     }
 
     /**
-     * 1.1.1 ordered connections (Eric's correction, supersedes the
+     * 1.1.1 ordered connections (the user's correction, supersedes the
      * old local-first order): remote FIRST, local SECOND, relay /
      * other THIRD — for a car, remote is the reliable path, even
      * on home Wi-Fi, because the car is usually away from home.

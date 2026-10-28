@@ -51,7 +51,7 @@ class FeelsTest {
         assertTrue(feels.moods.isEmpty())
         assertTrue(feels.vibes.isEmpty())
         // Real Plex tags pass through verbatim, including
-        // terms from Eric's Plex Amp screenshots that were
+        // terms from the user's Plex Amp screenshots that were
         // never in our old 193-term taxonomy.
         val plexTags = track("Tagged", "Test Artist", genres = listOf("Pop/Rock"),
             moods = listOf("Acerbic", "Amiable & Good-Natured", "Angst-Ridden"),

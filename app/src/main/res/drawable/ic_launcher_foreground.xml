@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Adaptive launcher icon foreground: the PrismTune Vinyl Ring (Concept 3,
-  v3 full redesign, picked by Eric). A gold vinyl disc with concentric
+  v3 full redesign, picked). A gold vinyl disc with concentric
   grooves, a charcoal centre hole, and a gold centre dot, centred in the
   108dp adaptive-icon frame. The disc (radius 32dp) sits inside the 66dp
   safe zone, so nothing important is cropped by launcher masks.

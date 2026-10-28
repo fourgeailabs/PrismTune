@@ -16,7 +16,7 @@ import kotlin.math.sqrt
  * PCM actually being played. That is overall loudness only
  * — it cannot show bass vs mids vs treble, because one RMS
  * number per buffer has no frequency information at all.
- * Eric, 2026-10-26 23:32: "the wave form isn't working
+ * 2026-10-26 23:32: "the wave form isn't working
  * right. It needs to reflect actual live treble base and
  * mids correctly."
  *
@@ -27,7 +27,7 @@ import kotlin.math.sqrt
  * bass (20-250 Hz), middle bars are mids (250-4000 Hz),
  * right bars are treble (4000-16000 Hz). A bass kick
  * spikes the left, a hi-hat spikes the right, vocals sit
- * in the middle — exactly what Eric asked for. Silence is
+ * in the middle — exactly what the user's request asked for. Silence is
  * flat, pause decays flat, never invented dancing bars.
  * If no PCM reaches the processor, or the format is not
  * 16-bit PCM, the spectrum decays to flat, honestly.
@@ -240,7 +240,7 @@ class LiveWaveformProcessor(val envelope: WaveformEnvelope = WaveformEnvelope())
         } else if (mono.isNotEmpty()) {
             // 1.5.0: NEVER call update(rms) here — it sets
             // EVERY bar to the same smoothed RMS value, which
-            // is exactly the solid-block shape in Eric's
+            // is exactly the solid-block shape in the user's
             // video. With too little audio to FFT, decay the
             // existing spectrum instead of flattening it.
             envelope.idleStep()

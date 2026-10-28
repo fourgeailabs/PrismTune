@@ -7,14 +7,14 @@ package com.fourgeailabs.prismtune.data
  * songs anywhere in this file: every card and every count is built
  * from PlexTrack objects the app actually loaded from the user's server.
  *
- * 1.5.4 REAL PLEX MOODS ONLY — Eric, 2026-10-27 04:49,
+ * 1.5.4 REAL PLEX MOODS ONLY — 2026-10-27 04:49,
  * with Plex Amp screenshots as the reference: Plex's own
  * Moods list is hundreds of real tags (Acerbic, Aggressive,
  * Amiable & Good-Natured, Angst-Ridden, ...), counted in
- * ALBUMS by Plex Amp. Eric prefers SONGS, so PrismTune
+ * ALBUMS by Plex Amp. Songs are the unit here, so PrismTune
  * counts TRACKS, not albums — but the tags themselves must
  * be Plex's, not ours. The screenshots are NOT the whole
- * list (Eric said so), so no fixed list can be complete:
+ * list, so no fixed list can be complete:
  * the taxonomy is now DYNAMIC — whatever Mood/Style tags
  * Plex actually returns on the loaded tracks, in Plex's
  * own spelling, counted per track.
@@ -86,7 +86,7 @@ fun mapTrackFeelsCached(track: PlexTrack): FeelsForTrack {
  * like "pop" then also fired GENRE_FEELS for Happy /
  * Upbeat / Playful on EVERY pop track, so every broad
  * mood ballooned to ~15,000 tracks on a ~45,000-track
- * library. Eric, 2026-10-27: "I don't think there are
+ * library. 2026-10-27: "I don't think there are
  * 15,177 happy songs". New rule: Plex tags match
  * EXACTLY (after normalisation) only. Genre inference
  * stays, but it is a separate, explicit step — a track

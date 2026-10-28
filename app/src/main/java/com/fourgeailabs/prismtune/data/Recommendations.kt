@@ -110,7 +110,7 @@ fun recommendedForYou(
     }
     // 1.5.4: match search queries against the library's REAL
     // mood/vibe terms, not the retired curated taxonomy, so
-    // searching "Acerbic" (a real Plex tag from Eric's Plex
+    // searching "Acerbic" (a real Plex tag from the user's Plex
     // Amp screenshots) surfaces it as a mood.
     val libraryTerms = library.flatMap { t ->
         val feels = mapTrackFeelsCached(t)
@@ -157,7 +157,7 @@ fun recommendedPlaylist(
 }
 
 /**
- * 1.5.8 "Curated by Me!" — Eric, 2026-10-27 08:18: the
+ * 1.5.8 "Curated by Me!" — 2026-10-27 08:18: the
  * Home card for songs the user will actually want to
  * listen to all the time, curated by his own thumbs.
  * The liked songs themselves come first, in the order
@@ -207,7 +207,7 @@ fun buildCuratedByMe(
     return out
 }
 
-/** 1.5.9 THUMB TOGGLES, Eric 2026-10-27 10:09: tapping
+/** 1.5.9 THUMB TOGGLES, 2026-10-27 10:09: tapping
  *  an already-selected thumb a second time UNSELECTS
  *  it — the song goes back to neutral, neither liked
  *  nor disliked — in case the user changed their mind.

@@ -82,7 +82,7 @@ val MinTouch = 76.dp
  */
 @Composable
 /**
- * 1.5.2 RETIRED — Eric, 2026-10-27: "Ditch all back
+ * 1.5.2 RETIRED — 2026-10-27: "Ditch all back
  * buttons. They are all redundant." The persistent top
  * NavRow (Home / Library / Moods / Search / Queue /
  * Settings) already navigates everywhere, so every
@@ -445,7 +445,7 @@ fun HomeScreen(
         }
         lib.connectionStatus?.let { item { Text(it, fontSize = 16.sp, color = PrismAmber) } }
         lib.error?.let { item { Text(it, fontSize = 16.sp, color = Color(0xFFFF6B6B)) } }
-        // 1.2.0 Home order, at Eric's request: Recently Played
+        // 1.2.0 Home order, at the user's request: Recently Played
         // at the top, Playlists second, Recently Added at the
         // bottom — no more recently-added songs dominating the
         // top of the home screen.
@@ -536,7 +536,7 @@ fun HomeScreen(
                 Column {
                     Text("${curated.size} tracks, built from your thumbs up — your liked songs first, then songs that sound like them.", fontSize = 16.sp, color = PrismSecondary, modifier = Modifier.padding(vertical = 8.dp))
                     BigButton("Play Curated by Me!") { vm.playTracks(curated, 0); onNowPlaying() }
-                    // 1.5.8 PER-SONG REMOVAL, Eric
+                    // 1.5.8 PER-SONG REMOVAL,
                     // 2026-10-27 08:44: every song in the
                     // card gets its own thumbs-down
                     // button, so one song can be kicked
@@ -641,7 +641,7 @@ fun HomeScreen(
             }
         }
         item { Spacer(modifier = Modifier.height(12.dp)) }
-        // 1.5.6: Recently Added REMOVED from Home at Eric's
+        // 1.5.6: Recently Added REMOVED from Home at the user's
         // request, 2026-10-27 05:42 — "let's get rid of
         // Recently Added on the home screen". The albums
         // are still in the Library; they just no longer
@@ -669,7 +669,7 @@ fun moodKindFor(name: String): String = when {
 @Composable
 fun MoodButton(name: String, onClick: () -> Unit) {
     // 1.5.2: explicit colours — the Material3 default button text was
-    // dark on the dark artwork background (teal text on teal in Eric's
+    // dark on the dark artwork background (teal text on teal in the user's
     // 02:54 Home photo), so it looked washed out. Text is now onSurface
     // (white on dark), border and play icon are the visible accent.
     OutlinedButton(

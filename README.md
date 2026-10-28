@@ -1,236 +1,61 @@
 # PrismTune
 
-**PrismTune** is an unofficial, audio-only music player for Android Automotive
-that plays music from your own Plex Media Server. It is the app Plex Amp
-never shipped for the car: sign in once with a TV-style link code, browse
-your artists, albums, playlists and recently added music, and listen —
-with big, driving-safe controls and nothing to watch.
+PrismTune plays your Plex music library in the car. It's an audio-only player for Android Automotive OS: no video, no feeds, nothing to scroll through. Sign in with your Plex account, pick your server, and drive.
 
-> **Unofficial. Not affiliated with, endorsed by, or connected to Plex Inc.**
-> PrismTune uses Plex's published account/server APIs with the user's own
-> token, the same way third-party Plex clients do. It uses its own name,
-> its own prism logo, and its own amber-on-charcoal theme. It does not use
-> the word "Plex" in its name, Plex's `>` logo, or Plex artwork.
+Unofficial project. Not affiliated with or endorsed by Plex Inc.
+
+## Full disclosure
+
+This app was written entirely by AI. Every line of code came out of a language model, working from plain-English requests and photos of a car screen. A human tests it on real hardware and decides what ships. It works, but you should know what it is before you run it.
 
 ## What it does
 
-- **TV / console-style sign-in (no password typed in the car)**
-  1. PrismTune calls `POST https://plex.tv/api/v2/pins` with
-     `X-Plex-Product: PrismTune`, `X-Plex-Version`, and a per-car
-     `X-Plex-Client-Identifier`.
-  2. The car screen shows a 4-character code **and a QR code**.
-     The code is ONLY ever the one returned by that POST — if the call
-     fails, the screen shows a clear error and a Retry button, and NO
-     code and NO QR at all. No code is ever invented or fallen back to,
-     and there is no demo/sample music anywhere in the app: with no real
-     signed-in library, screens show honest empty states, never made-up
-     tracks.
-  3. Scan the QR code with your phone (or open `plex.tv/link` by hand),
-     sign in to Plex on the phone, and type the code. The QR encodes
-     plain `https://plex.tv/link` only.
-  4. PrismTune polls `GET https://plex.tv/api/v2/pins/{id}` every 2 seconds
-     until an `authToken` arrives (timeout: 15 minutes, with Cancel/Retry).
-  5. The token is stored with `EncryptedSharedPreferences` (with a private
-     fallback where the KeyStore is unavailable) and wiped on Sign out.
-- **Servers:** `GET https://plex.tv/api/v2/resources` lists your servers;
-  PrismTune prefers a local connection and falls back to remote/HTTPS.
-  Switch servers in Settings.
-- **Browsing:** music library sections → artists → albums → tracks,
-  playlists, recently added, and title search — all over Plex's JSON APIs
-  (`Accept: application/json`).
-- **Playback:** Media3 ExoPlayer + a `MediaSession` (`PrismTuneMediaService`),
-  so steering-wheel and car-system play/pause/next/previous work. Queue,
-  shuffle, repeat off/all/one, seek, recently played.
-- **Audio quality (Settings):** Original (direct play) or a transcode
-  ceiling of 320 / 192 / 128 kbps via Plex's universal transcode endpoint.
-  Applies to the next track started.
-- **Look:** dark charcoal theme, amber accent, the PrismTune Vinyl Ring on
-  the sign-in screen, Now Playing, and the launcher icon.
-- **Loading:** while the app is loading, while a link code is being
-  created, or while library data is loading, the Vinyl Ring spins
-  CLOCKWISE, like a record. It stops (static vinyl mark) as soon as
-  loading finishes — it never spins on Now Playing or other finished
-  screens, and never in the launcher icon, which cannot animate.
-- **No top chrome:** there is no TopBar header strip, no safe-boundary
-  badge, no clock, no temperature/weather readout, no version banner,
-  and no cockpit/CI/Play Store header in the app. Navigation is
-  in-content (NavRow on Home, an inline Back button only where a back
-  action exists). The safe area is still enforced silently by
-  `SafeDrivingLayout`.
+- Sign in with your Plex username and password (a plex.tv/link code option is in there too). The password is never stored. The sign-in token is stored encrypted on the device and wiped on sign-out.
+- Connections are tried remote first, then local, then relay. It's a car app, so it assumes you're not at home.
+- Browse artists, albums, tracks, and playlists. Search while parked. Recently Played is on the Home screen.
+- Moods are the real Mood and Style tags from your own server, counted per song. There's no genre guessing — if a song isn't tagged with a mood in Plex, it doesn't show up under that mood.
+- A Recommended playlist and a Curated by Me! card, both built from what you play and what you thumb up or down. Thumbs toggle: tap a selected thumb again to undo it.
+- Downloads that are honest about themselves. The Download button asks first, with a big pop-up. A song only counts as downloaded if you actually asked for it — songs sitting in the playback buffer don't pretend to be downloads. Settings has a downloads manager with per-song delete and a delete-all that keeps the song currently playing.
+- Offline Top Picks builds an offline set from your most-played and highest-rated music.
+- Playback runs through Media3 with a proper media session, so steering-wheel buttons and the instrument cluster display work.
+- Colour themes pulled from the album artwork. If you land on a colourway you like, Keep current colours in Settings locks it in across restarts and track changes.
+- A live waveform on Now Playing and the mini player, because it looks good.
 
-## Driving safety — and the Equinox EV screen
+## Driving safety
 
-This is an **audio-only** app. There is no video playback, no video
-surface, and no video code anywhere in the project.
+Audio only — there is no video code in the project. The app declares `distractionOptimized`, and every touch target is at least 76dp.
 
-- The activity declares `distractionOptimized=true` in the manifest.
-- Every interactive control is at least **76dp** tall.
-- Browsable lists are paged at **6 rows per page** with large Prev/Next
-  buttons, instead of endless scrolling.
-- Text search is labelled for parked use; while driving, use Home,
-  Library, Queue, or Now Playing.
+The layout is built around a 2025 Chevy Equinox EV. On that car the temperature readout sits in the top-right corner of the screen, so PrismTune keeps every control inside the left 80% of the display. The right strip is display-only: artwork, track info, mini player. The split is adjustable in Settings from 55% to 85%, hard-capped at 85% so controls can never reach the gauge. It should behave on other Android Automotive screens too, but the Equinox is what it's tuned and tested on.
 
-### The top-right gauge zone (2025 Chevrolet Equinox EV)
+The usable area it was tuned against measures 13.125 in across by 4.875 in high. On that screen the temperature sits about 89% across and the clock about 83%, which is where the 80% default comes from.
 
-The Equinox EV's 17.7" infotainment display has a temperature / climate
-overlay in the **top-right corner**, and the screen is wider than a normal
-tablet. PrismTune handles this in exactly one place:
+## Status
 
-- `app/src/main/java/com/fourgeailabs/prismtune/ui/SafeDrivingLayout.kt`
-- `SafeAreaConfig.DEFAULT_FRACTION = 0.80f`
-  (`app/src/main/java/com/fourgeailabs/prismtune/data/PlexModels.kt`)
+Current version is 1.5.9. It runs daily on a real Equinox EV and on a Pixel phone. 181 unit tests, all passing.
 
-All tappable controls — navigation, lists, playback buttons, sliders, the
-sign-in Retry/Cancel buttons — live in the **left 80%** of the width.
-There is no top bar at all, so no interactive element ever sits in the
-top-right quadrant (x > 80%, top ~12% of height).
-The remaining right strip is **display only**: large album artwork,
-now-playing text, and a decorative equalizer glow. It contains no buttons,
-no sliders, and no text fields, so no control can ever sit in the
-top-right corner or require a glance at it.
+Distribution right now is Google Play internal testing only. Getting to a public Play release needs a closed test with more testers first, which is one reason this repo is public.
 
-**Tuning it:** Settings → "Equinox EV safe area" has a slider from
-55% to 85% (persisted, hard-capped at 85% — controls can never be pushed
-past 85%). If the default ever feels off on the real car, move that
-slider — or change `DEFAULT_FRACTION` and rebuild.
+Known gaps are in the GitHub Issues, not hidden. If something doesn't work with your server, that's a bug report worth filing.
 
-### Measured usable area (final figure)
+## Want to test it?
 
-Eric tape-measured the top of the usable area of the display:
+Open an issue with the title "Tester request" and say hello. Play internal testing needs the email address of the Google account you use on the Play Store to add you to the list, so don't post it in the issue itself — we'll sort that out with you.
 
-- **Usable area: 13.125 × 4.875 in** (13 and 1/8 in across, 4 and 7/8 in high)
-- **Aspect ratio: 2.692:1** — very wide, very short
-- **Usable diagonal: about 14.00 in**
-- **80% interactive width = 10.50 in** from the left
-- **Right non-interactive reserve = 2.625 in**
-- **Temperature at ~89% across = about 11.68 in** from the left, so the
-  80% limit leaves about a **1.18 in buffer** before the temp centre
-- **Clock at ~83% across = about 10.89 in** from the left
+## Build it
 
-This is the **app-usable area he measured, not the advertised
-full-glass spec** — PrismTune is coded to this usable area (see
-`EquinoxUsableArea` in `PlexModels.kt`, covered by unit tests in
-`PlexLogicTest.kt`). The temp
-position itself is still the photo-derived ~89% (he has not yet given a
-tape-measured distance to the temp gauge itself); if he sends that, the
-~89% figure is replaced by the measured one.
-
-Because the usable area is only 4.875 in tall — even tighter than the
-earlier 5 in estimate — layouts are checked at this wide, short ratio:
-the main layout is a wide left (interactive) pane + a non-interactive
-right pane, rows and controls are kept low and wide, Now Playing keeps
-its controls in one horizontal row, and the browsable screens scroll
-vertically inside the left pane rather than stacking tall fixed
-columns that could overflow a 4.875-inch-tall screen. No tall vertical
-stacks: if a screen cannot fit in 4.875 in of height, it scrolls
-instead of overflowing.
-
-### Calibration note — photo, 2026-10-25
-
-Eric sent a photo of the display with a standard 12 oz soda can
-(2.6 in diameter, 4.83 in tall) pressed flush against the screen.
-Measured in the photo (0–1000 image coordinates):
-
-- Infotainment content screen: x 284–880, y 407–845
-- Soda can: x 622–768, y 449–835 — about **57% to 81% across** the
-  content screen
-- Temperature reading (91°): point x 812, y 427 — about **88–89% across**
-  the content screen, about 5% down from its top
-- Clock (11:54): x 781 — about **83% across**
-
-**Honest uncertainty:** the photo is angled, not straight-on, and the
-can's centre sits ~1.3 in in front of the glass, so absolute-inch maths
-from the can is approximate, not exact. The **relative** position is the
-reliable part: the top-right temp/clock zone starts around 83% across
-and the temperature itself is at ~89%.
-
-That is why the default is **80%**: it gives more usable room than the
-original conservative 70%, while still leaving a clear margin before
-the clock at ~83% and the temperature at ~89%. If a future straight-on
-photo (credit card or ruler against the screen edge) pins the gauge
-edge more precisely, the default changes in the single constant above.
-
-## Screens
-
-| Screen | Contents |
-|---|---|
-| Sign-in | 4-char code, QR code for `plex.tv/link`, wait/cancel/retry, disclaimer |
-| Home | Recently added, playlists, server name, browse button |
-| Library | Artists (paged) → Albums (paged) → Tracks (paged, Play all) |
-| Search | Artist/album/song search (parked use) |
-| Now Playing | Artwork, seek, prev/play/next, shuffle, repeat, queue link |
-| Queue | Up Next (tap to jump), Recently played |
-| Settings | Server choice + connection, audio quality, safe-area slider, sign-out, about |
-
-## Branding
-
-- Name: **PrismTune** — prism + tune. No "Plex" in the name.
-- Logo / icon (chosen, 2026-10-25): the **Vinyl Ring** — Concept 3 from the
-  v3 full redesign, picked by Eric. A gold vinyl disc with concentric
-  grooves, a charcoal centre hole, and a gold centre dot, amber-orange
-  gradient on deep charcoal. Distinct from Plex. The v1 triangle/prism
-  mark and the v2 gem concepts (Slash Gem, Hex Prism, Play Prism) are
-  superseded and are not used anywhere in the app; their concept files
-  remain on disk only under `assets/branding/v2/` and `assets/branding/v3/`
-  and are not tracked in git.
-- Files:
-  - `assets/branding/prismtune-logo.svg` — vector logo source
-  - `assets/branding/prismtune-icon-1024.svg` — 1024px icon source (SVG)
-  - `assets/branding/prismtune-icon-1024.png` — 1024×1024 icon render (PNG)
-  - `app/src/main/res/drawable/prism_logo.xml` — in-app VectorDrawable
-  - `app/src/main/res/drawable/ic_launcher_foreground.xml` +
-    `ic_launcher_background.xml` + `mipmap-anydpi-v26/ic_launcher*.xml`
-    — adaptive launcher icon, wired in `AndroidManifest.xml`
-
-## Build
-
-Requirements: JDK 17+ (JDK 21 for unit tests), Android SDK with
-API 36, Gradle 9.3.1 (wrapper included).
+You need JDK 17 to build (JDK 21 to run the unit tests), the Android SDK with API 36, and the Gradle wrapper in the repo.
 
 ```bash
 ./gradlew assembleDebug
 ./gradlew testDebugUnitTest
 ```
 
-GitHub Actions (`.github/workflows/build.yml`) builds the debug APK and
-uploads it as the `prismtune-debug-apk` artifact. **APKs are delivered via
-CI artifacts only — never as chat attachments** (project policy).
+Release builds are signed with a key that is not in this repo, so a build you make yourself won't update over the Play build. For just trying the app, the internal test is easier.
 
-## Project layout
+## Privacy
 
-```
-app/src/main/java/com/fourgeailabs/prismtune/
-  MainActivity.kt            # Automotive entry, SafeDrivingLayout wiring
-  data/
-    PlexModels.kt            # SafeAreaConfig, PlexUrls, ConnectionPicker, models
-    PlexClient.kt            # PIN auth, resources, browsing, search (JSON APIs)
-    TokenStore.kt            # Encrypted token store + SettingsStore
-  playback/
-    PlaybackManager.kt       # Media3 ExoPlayer queue/shuffle/repeat/seek
-    PrismTuneMediaService.kt # MediaSession for car controls
-  qr/QrCode.kt               # QR rendering for plex.tv/link
-  ui/
-    Theme.kt                 # Dark amber theme
-    SafeDrivingLayout.kt     # THE safe-area rule (see above)
-    PrismLogo.kt             # Logo drawn in Compose
-    Screens.kt               # Sign-in, Home, Library, Search
-    NowPlayingScreens.kt     # Now Playing, Queue, Settings
-  viewmodel/PrismViewModel.kt
-app/src/test/.../PlexLogicTest.kt   # Safe-area, URL, connection-picker tests
-```
-
-## What has NOT been tested yet (honest status)
-
-- Nothing in this repo has run on a real 2025 Equinox EV yet.
-- Still owed, on the car: install from the CI artifact, complete the QR
-  link-code sign-in, play a track end-to-end, check steering-wheel
-  controls, and confirm no control sits under the top-right gauge at the
-  80% default (or move the Settings slider and report the right value).
-- Plex server behaviour (local vs. remote, transcoding, artwork) varies
-  by server version and network; the first in-car run is the real test.
+Everything stays on the device. The app talks to plex.tv (for sign-in) and to your own Plex server, and nowhere else. No analytics, no ads, no tracking, nothing sent to the developer. The full policy is in [PRIVACY.md](PRIVACY.md).
 
 ## License
 
-FOURGEAI LABS PROPRIETARY SOFTWARE LICENSE v1.0 — see `LICENSE`
-and `NOTICE.md`. Forking, modifying, or redistributing requires the
-author's direct written consent (see `NOTICE.md`).
+See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).

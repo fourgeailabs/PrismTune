@@ -12,10 +12,10 @@ import java.util.Locale
 
 /**
  * Crash history, kept ON the device, for future debugging
- * by Eric, other testers, and regular users once public.
+ *, other testers, and regular users once public.
  *
  * 1.3.3: saved only the LAST crash, overwriting the file.
- * 1.3.5 (Eric, 2026-10-26): keep a HISTORY, not just one.
+ * 1.3.5 (2026-10-26): keep a HISTORY, not just one.
  * Every crash is APPENDED to a history file, with a
  * separator, and the file is pruned to the most recent
  * 20 crashes / 500 KB, so it never grows unbounded.

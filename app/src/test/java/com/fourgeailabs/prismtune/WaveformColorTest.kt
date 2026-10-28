@@ -16,7 +16,7 @@ class WaveformColorTest {
 
     @Test fun unplayedBarIsAlwaysBase() {
         // Bar at 90% through, song only 20% through: unplayed, so base.
-        // Eric 2026-10-27 05:38: white on red "does look clean" — keep it.
+        // 2026-10-27 05:38: white on red "does look clean" — keep it.
         assertEquals(Color.White, waveformBarColor(0.9f, 0.2f, false, Color(0xFF1E1913)))
         assertEquals(Color.Black, waveformBarColor(0.9f, 0.2f, true, Color.White))
     }
@@ -27,7 +27,7 @@ class WaveformColorTest {
         // Deep red background -> played is reddish (red is
         // still the dominant channel), brighter than the
         // background, and NOT white and NOT cyan/blue.
-        val bg = Color(0xFF8B0000) // dark red, like Eric's photo
+        val bg = Color(0xFF8B0000) // dark red, like the user's photo
         val played = waveformBarColor(0.0f, 0.05f, false, bg)
         assertTrue("played on red must stay reddish, got $played", played.red > played.green && played.red > played.blue)
         assertTrue("played must be brighter than dark red bg, got $played", played.red > bg.red)

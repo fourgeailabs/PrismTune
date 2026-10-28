@@ -820,7 +820,7 @@ class PlexClient(
      */
     suspend fun tracksForPlaylistFor(serverBase: String, token: String, deviceId: String, playlist: PlexPlaylist): List<PlexTrack> {
         val itemsPath = playlistItemsPath(playlist)
-        // 1.5.6 — Eric, 2026-10-27 05:42: his smart/dynamic
+        // 1.5.6 — 2026-10-27 05:42: his smart/dynamic
         // playlists (Tracks, Fresh, Recently Played) open
         // EMPTY even though Plex shows items in them, while
         // regular playlists load fine. The items endpoint
@@ -907,7 +907,7 @@ class PlexClient(
 
     /**
      * 1.1.0 playlist item count, independent of leafCount: smart /
-     * dynamic playlists (Tracks, Fresh, Recently Played in Eric's
+     * dynamic playlists (Tracks, Fresh, Recently Played in the user's
      * library) report leafCount 0 on /playlists even when they
      * have items, while All Music / Recently Added / Bedtime
      * report correctly. Children with Container-Size=0 returns
@@ -938,7 +938,7 @@ class PlexClient(
 
     /**
      * 1.3.8: PLEX NATIVE mood/genre/style filter, server-side.
-     * Eric, 2026-10-26 23:59: "Plex already has a moods
+     * 2026-10-26 23:59: "Plex already has a moods
      * section built into the server. Is there any way that
      * we can tap into that?" Yes — and we should have from
      * the start. Plex's /library/sections/{key}/all endpoint
@@ -996,7 +996,7 @@ class PlexClient(
     }
 
     /**
-     * 1.5.4 SERVER MOOD LIST — Eric, 2026-10-27 04:54: in
+     * 1.5.4 SERVER MOOD LIST — 2026-10-27 04:54: in
      * Windows File Explorer > Network, his Plex server shows
      * a filtered Moods view. That view is Plex's DLNA server
      * rendering the server's own mood index — the same index
@@ -1010,7 +1010,7 @@ class PlexClient(
      * primary Moods list source in 1.5.4; the track-tag
      * scan stays as the fallback and as the count source.
      * PROBE, NOT A PROMISE: the exact secondary-directory
-     * path is not verified against Eric's server (it was
+     * path is not verified against the user's server (it was
      * unreachable from hosted Plex Web), so every call is
      * runCatching — a 404/empty response returns an empty
      * list and the caller falls back to scan terms, never

@@ -51,7 +51,7 @@ class PlexLogicTest {
 
     @Test
     fun connectionPickerPrefersRemote() {
-        // 1.1.1, Eric's correction: remote is PRIMARY for a car,
+        // 1.1.1, the user's correction: remote is PRIMARY for a car,
         // local is SECONDARY — the old local-first expectation is superseded.
         val remote = PlexConnection("https://remote.example:32400", local = false, protocol = "https")
         val local = PlexConnection("http://192.168.1.10:32400", local = true)

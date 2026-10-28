@@ -22,8 +22,8 @@ import kotlin.math.roundToInt
  * back to the most frequent colour OVERALL — which for a
  * photo-heavy cover is usually a muddy mid-brown average
  * (skin, shadows, backgrounds averaged together), even
- * when the artwork contains no brown-red at all. Eric,
- * 2026-10-27: "brownish-red background when the album art
+ * when the artwork contains no brown-red at all. Field
+ * report, 2026-10-27: "brownish-red background when the album art
  * does not have that shade whatsoever". New rule: (1)
  * quantize finer (32 levels) so distinct hues do not
  * collapse into one brown bucket; (2) NEVER fall back to

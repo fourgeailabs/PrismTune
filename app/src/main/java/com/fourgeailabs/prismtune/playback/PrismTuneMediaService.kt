@@ -234,7 +234,7 @@ class PrismTuneMediaService : MediaLibraryService() {
     }
 
     /**
-     * 1.3.7: system-level media, like Apple Music in Eric's
+     * 1.3.7: system-level media, like Apple Music in the user's
      * 2026-10-26 23:47 screenshot — NOT a swipeable notification.
      * That screenshot is Android's media-controls panel, which
      * is populated from an ACTIVE MediaSession with metadata,

@@ -16,7 +16,7 @@ class WaveformPipelineTest {
         // Feed a real mixed tone (bass + mids + treble) through the
         // actual processor, as ExoPlayer would, and check the
         // resulting spectrum is NOT all bars equal — the solid
-        // block shape from Eric's 2026-10-27 video.
+        // block shape from the user's 2026-10-27 video.
         val proc = LiveWaveformProcessor(WaveformEnvelope())
         val fmt = AudioProcessor.AudioFormat(48000, 2, C.ENCODING_PCM_16BIT)
         proc.configure(fmt)

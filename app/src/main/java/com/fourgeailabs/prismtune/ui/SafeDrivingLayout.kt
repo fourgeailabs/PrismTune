@@ -26,7 +26,7 @@ import com.fourgeailabs.prismtune.data.SafeAreaConfig
  *    (x > 80%, top ~12% of height).
  *  - The remaining right strip ([ambientContent]) is DISPLAY ONLY
  *    by default: large artwork, now-playing text, a visualizer-style
- *    glow. 1.1.4 exception, at Eric's explicit request: the waveform
+ *    glow. 1.1.4 exception, at the user's explicit request: the waveform
  *    panel below the artwork may carry play/pause and next buttons
  *    and may be tapped to open Now Playing. Those controls sit
  *    below the artwork, in the lower right, never in the top-right
@@ -37,7 +37,7 @@ import com.fourgeailabs.prismtune.data.SafeAreaConfig
  *
  * To recalibrate from a straight-on photo of the real display, change
  * ONE value — SafeAreaConfig.DEFAULT_FRACTION — or move the Settings slider.
- * No other file needs to change. Calibrated 2026-10-25 from Eric's photo
+ * No other file needs to change. Calibrated 2026-10-25 from the user's photo
  * (12 oz can for scale, temp at ~89% across, clock at ~83%): see README.
  */
 @Composable

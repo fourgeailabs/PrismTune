@@ -1,7 +1,7 @@
 package com.fourgeailabs.prismtune.data
 
 /**
- * 1.1.0 A-Z jump for the Artists list. Eric's library paginates to
+ * 1.1.0 A-Z jump for the Artists list. the user's library paginates to
  * 63 pages at 6 per page; tapping Next 62 times in a car is
  * unusable, so a letter jump goes straight to the first artist
  * starting with that letter. Pure, unit-testable.

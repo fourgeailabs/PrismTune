@@ -230,7 +230,7 @@ data class LibraryState(
     val playlists: List<PlexPlaylist> = emptyList(),
     val recent: List<PlexTrack> = emptyList(),
     /** 1.2.3: most recently added ALBUMS, for Home's Recently
-     *  Added section — albums, not songs, at Eric's request. */
+     *  Added section — albums, not songs, at the user's request. */
     val recentAlbums: List<PlexAlbum> = emptyList(),
     val searchResults: List<PlexTrack> = emptyList(),
     /** 1.1.0 server-side search: only the query's matches, never
@@ -260,7 +260,7 @@ data class LibraryState(
     /** 1.5.4 SERVER MOOD LIST: Plex's own mood/style terms
      *  for the section, fetched from the server's secondary
      *  directories — the API equivalent of the DLNA Moods
-     *  view Eric saw in File Explorer. Primary Moods list
+     *  view seen in File Explorer. Primary Moods list
      *  source; scan counts above fill in counts for terms
      *  the scan actually saw, and terms with no scan count
      *  are shown with no count, never a fake one.
@@ -423,7 +423,7 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
     private val _recentlyPlayed = MutableStateFlow<List<PlexTrack>>(emptyList())
     val recentlyPlayed: StateFlow<List<PlexTrack>> = _recentlyPlayed.asStateFlow()
 
-    /** 1.5.6 thumbs + download state, Eric 2026-10-27
+    /** 1.5.6 thumbs + download state, 2026-10-27
      * 05:42: a thumbs up / thumbs down in the main player
      * to curate the queue, a thumbs up asks whether to
      * also download that song, and a download button to
@@ -480,7 +480,7 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
 
     fun dismissDownloadPrompt() { _downloadPromptKey.value = null }
 
-    /** 1.5.8 RESETS, Eric 2026-10-27 08:44: separate
+    /** 1.5.8 RESETS, 2026-10-27 08:44: separate
      *  resets for likes and dislikes, NOT one combined
      *  wipe — the user picks which half of the curation
      *  to throw away. Resetting likes empties Curated
@@ -656,7 +656,7 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
     private var pendingPlayAtMs: Long? = null
 
     // 1.1.0 auto offline toggle (default on; downloads may run on
-    // mobile data too, per Eric's correction — no Wi-Fi gate).
+    // mobile data too, per the user's correction — no Wi-Fi gate).
     private val _autoOffline = MutableStateFlow(settings.autoOffline)
     val autoOffline: StateFlow<Boolean> = _autoOffline.asStateFlow()
 
@@ -1007,7 +1007,7 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
                 // explicit tap, via resumeSavedQueue().
                 playback.setQueueMetadata(expanded, saved.index.coerceIn(0, expanded.size - 1))
                 _lastPlayed.value = expanded.getOrNull(saved.index.coerceIn(0, expanded.size - 1))
-                // 1.5.7 COLD-BOOT PLAY FIX, part 1 — Eric,
+                // 1.5.7 COLD-BOOT PLAY FIX, part 1 —
                 // 2026-10-27 07:28: pressing play on the mini
                 // player on a cold boot did nothing. Cause:
                 // this metadata-only restore never told the
@@ -1398,7 +1398,7 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
 
     /**
      * 1.1.1 cellular fallback: try the server's connections in
-     * order (remote first, then local, then relay — Eric's
+     * order (remote first, then local, then relay — the user's
      * correction: a car is usually away from home) with a
      * short-timeout sections probe. The first
      * connection that returns sections wins and the rest of the
@@ -1775,7 +1775,7 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
             }
             _queueSource.value = lastQueueSource
             // 1.3.7: EVERY play fills Up Next to 100, not just
-            // single-track album expansion. Eric, 2026-10-26
+            // single-track album expansion. 2026-10-26
             // 23:50: "Only 1 song gets loaded in to the next
             // up queue and the app doesn't add more." That was
             // playTracks with a 1-track list (Recently Played,
@@ -2354,7 +2354,7 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
             if (f.exists() && f.length() > 0) t.copy(localPath = f.absolutePath) else t
         }
         val restoredIndex = saved.index.coerceIn(0, restored.size - 1)
-        // 1.5.1 UP NEXT FIX — Eric, 2026-10-27 02:18:
+        // 1.5.1 UP NEXT FIX — 2026-10-27 02:18:
         // "The up next side panel also no longer has the
         // 100 queue." Cause: this resume path restored the
         // SAVED window only, without expanding it to a
@@ -2396,7 +2396,7 @@ class PrismViewModel(application: Application) : AndroidViewModel(application) {
      * background, never blocks the rest of 1.1.0: if downloads
      * fail, the playlist still exists as streaming tracks and the
      * failure is reported plainly in Settings. No Wi-Fi gate —
-     * downloads may run on mobile data too (Eric's correction).
+     * downloads may run on mobile data too (the user's correction).
      * Pruning never deletes the currently playing track.
      */
     fun refreshOfflineTopPicks() {

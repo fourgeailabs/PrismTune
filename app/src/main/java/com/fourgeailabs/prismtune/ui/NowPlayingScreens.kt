@@ -90,7 +90,7 @@ fun NowPlayingScreen(vm: PrismViewModel, onBack: () -> Unit) {
     val repeat by playback.repeatMode.collectAsState()
     val track = playback.currentTrack
 
-    // 1.5.0: NO BackRow on Now Playing — Eric,
+    // 1.5.0: NO BackRow on Now Playing —
     // 2026-10-27: the back button needs to go away, and
     // the top nav bar already navigates everywhere. Removing
     // it also moves art/title/controls up, which is part of
@@ -147,7 +147,7 @@ fun NowPlayingScreen(vm: PrismViewModel, onBack: () -> Unit) {
         // hold a minimum height so the bar still reads as a
         // waveform instead of vanishing to a flat line.
         val waveformLevels by vm.playback.waveformLevels.collectAsState()
-        // 1.4.2: shrunk from 220dp to 96dp — Eric,
+        // 1.4.2: shrunk from 220dp to 96dp —
         // 2026-10-27: the 220dp waveform pushed the play /
         // pause / next controls off-screen, so they needed
         // a scroll to reach. 96dp still shows the full
@@ -164,7 +164,7 @@ fun NowPlayingScreen(vm: PrismViewModel, onBack: () -> Unit) {
                     }
                 },
         ) {
-            // 1.5.0 WAVEFORM FIX, part 2 — Eric's video,
+            // 1.5.0 WAVEFORM FIX, part 2 — the user's video,
             // 2026-10-27 01:54, Skillet "Madness in Me":
             // the played side was a solid orange block and
             // the unplayed side a flat white tail, and the
@@ -179,7 +179,7 @@ fun NowPlayingScreen(vm: PrismViewModel, onBack: () -> Unit) {
             // set every bar to the same RMS, both of which
             // flatten the shape into a block. See
             // Waveform.kt rolling window + idleStep fallback.
-            // 1.5.0 WAVEFORM FIX — Eric, 2026-10-27, "does
+            // 1.5.0 WAVEFORM FIX — 2026-10-27, "does
             // something look a little weird and off about the
             // waveform? I'm not just talking about color."
             // Yes, and it was not the spectrum data, it was
@@ -188,7 +188,7 @@ fun NowPlayingScreen(vm: PrismViewModel, onBack: () -> Unit) {
             // were painted amber, bars right of it grey, so
             // the waveform looked like a solid block that
             // suddenly dropped to a flat line at the playhead
-            // — in Eric's photo, a thick blue slab up to
+            // — in the user's photo, a thick blue slab up to
             // ~3:17, then a thin grey tail. That is not a
             // spectrum shape, that is a progress bar wearing
             // a spectrum costume. Fixed: every bar is the
@@ -203,7 +203,7 @@ fun NowPlayingScreen(vm: PrismViewModel, onBack: () -> Unit) {
             // silent bar to 2% height, so quiet treble never
             // went truly flat. Fixed: level as-is, silence
             // is flat, loud is tall, honestly.
-            // 1.5.1 — Eric, 2026-10-27 02:16, correcting
+            // 1.5.1 — 2026-10-27 02:16, correcting
             // 1.5.0: "The wave form is supposed to be a
             // progress bar too. Not just wave form." He is
             // right, and 1.5.0 over-corrected by painting
@@ -294,7 +294,7 @@ fun NowPlayingScreen(vm: PrismViewModel, onBack: () -> Unit) {
             } + "  •  Shuffle: " + if (shuffle) "on" else "off",
             fontSize = 16.sp, color = PrismOnSurface,
         )
-        // 1.5.6 — Eric, 2026-10-27 05:42: a download button
+        // 1.5.6 — 2026-10-27 05:42: a download button
         // in the main player, and thumbs up / thumbs down
         // to curate the queue. Thumbs live on-device only
         // (never sent to Plex); a thumbs up asks whether to
@@ -339,7 +339,7 @@ fun NowPlayingScreen(vm: PrismViewModel, onBack: () -> Unit) {
                 )
             }
         }
-        // 1.5.8 DOWNLOAD POP-UP — Eric, 2026-10-27
+        // 1.5.8 DOWNLOAD POP-UP — 2026-10-27
         // 08:15 + 08:20: the download request must be a
         // pop-up that takes over the MIDDLE of the screen
         // at a good size, with BIG buttons saying "Yes
@@ -450,7 +450,7 @@ fun SettingsScreen(vm: PrismViewModel, onBack: () -> Unit, onCrashLogs: () -> Un
     val safeArea by vm.safeAreaFraction.collectAsState()
     val quality by vm.audioQuality.collectAsState()
     val lib by vm.library.collectAsState()
-    // 1.5.6 SETTINGS SECTIONS — Eric, 2026-10-27 05:42:
+    // 1.5.6 SETTINGS SECTIONS — 2026-10-27 05:42:
     // server, palette, audio and safe area must each be
     // their OWN section with a button that opens it, not
     // everything laid out at once. All four start
@@ -480,7 +480,7 @@ fun SettingsScreen(vm: PrismViewModel, onBack: () -> Unit, onCrashLogs: () -> Un
                         // The Material default is the theme primary,
                         // which in Now Playing colours mode IS the
                         // artwork accent — red text on a red
-                        // background, unreadable in Eric's photo.
+                        // background, unreadable in the user's photo.
                         color = if (server.id == lib.selectedServer?.id) PrismAmber else PrismOnSurface,
                     )
                 }
@@ -524,7 +524,7 @@ fun SettingsScreen(vm: PrismViewModel, onBack: () -> Unit, onCrashLogs: () -> Un
                         modifier = Modifier.weight(1f).heightIn(min = 64.dp).padding(2.dp),
                     ) { Text("Now Playing colours", fontSize = 16.sp, color = if (paletteMode == "nowplaying") PrismAmber else PrismOnSurface) }
                 }
-                // 1.5.7 — Eric, 2026-10-27 07:28: the
+                // 1.5.7 — 2026-10-27 07:28: the
                 // colourway on screen right now is one he
                 // wants to keep. "Keep current colours"
                 // snapshots PrismPaletteState.current
@@ -658,7 +658,7 @@ fun SettingsScreen(vm: PrismViewModel, onBack: () -> Unit, onCrashLogs: () -> Un
 
         item { Text("Curated by Me!", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = PrismOnSurface) }
         item {
-            // 1.5.8 RESETS, Eric 2026-10-27 08:44: two
+            // 1.5.8 RESETS, 2026-10-27 08:44: two
             // SEPARATE resets — likes and dislikes
             // each get their own button — not one
             // combined wipe. Each is two-tap confirm,
@@ -737,7 +737,7 @@ fun SettingsScreen(vm: PrismViewModel, onBack: () -> Unit, onCrashLogs: () -> Un
         }
         item {
             // 1.5.6: crash logs live behind a button now —
-            // Eric, 2026-10-27 05:42: no more stack traces
+            // 2026-10-27 05:42: no more stack traces
             // free-falling through Settings. The full
             // history + diagnostics live on CrashLogsScreen.
             BigButton("Open crash logs") { onCrashLogs() }
@@ -758,7 +758,7 @@ fun SettingsScreen(vm: PrismViewModel, onBack: () -> Unit, onCrashLogs: () -> Un
         item { Text("What's New", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = PrismOnSurface) }
         item { BigButton("What's New") { onWhatsNew() } }
 
-        // 1.5.6: Sign out is LAST in Settings, at Eric's
+        // 1.5.6: Sign out is LAST in Settings, at the user's
         // request — nothing sits below it to tap by mistake
         // after signing out.
         item { Text("Account", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = PrismOnSurface) }

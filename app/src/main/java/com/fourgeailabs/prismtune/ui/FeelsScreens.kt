@@ -52,7 +52,7 @@ import com.fourgeailabs.prismtune.viewmodel.PrismViewModel
 
 /**
  * GlossyCard (1.1.4) — the ONE card finish used for Genre, Mood, Vibe,
- * Artist, Track, and Album cards alike. Eric, 2026-10-26: the old
+ * Artist, Track, and Album cards alike. 2026-10-26: the old
  * gradient was muted and watercolory. New finish: a MATTE base
  * (flat, darkened palette colour, no gradient wash) with a
  * SPARKLE / glisten layer on top — deterministic white and gold
@@ -75,7 +75,7 @@ fun GlossyCard(
     val matte = Color(
         red = top.red * 0.38f, green = top.green * 0.38f, blue = top.blue * 0.38f, alpha = 1f,
     )
-    // 1.5.0 MATTE CARDS: Eric, 2026-10-27 — the
+    // 1.5.0 MATTE CARDS: 2026-10-27 — the
     // accented border + sparkle + gloss band looked
     // old-fashioned and ugly. Now: flat matte, NO border
     // (selected = a thin white underline via text colour
@@ -117,7 +117,7 @@ private fun FeelCardGrid(
     onToggle: (FeelCard) -> Unit,
 ) {
     if (cards.isEmpty()) return
-    // 1.5.4 PLEX AMP GRID, PRISMTUNE THEME — Eric,
+    // 1.5.4 PLEX AMP GRID, PRISMTUNE THEME —
     // 2026-10-27 04:52, with Plex Amp's Moods page as the
     // model: a plain scrolling grid, NO pagination, NO
     // Prev/Next pages. Cards are the existing matte
@@ -178,7 +178,7 @@ fun FeelsScreen(
     var selectedGenres by remember { mutableStateOf<Set<String>>(emptySet()) }
     var selectedMoods by remember { mutableStateOf<Set<String>>(emptySet()) }
     var selectedVibes by remember { mutableStateOf<Set<String>>(emptySet()) }
-    // 1.5.4 MOODS SEARCH — Eric, 2026-10-27 04:52: the Moods
+    // 1.5.4 MOODS SEARCH — 2026-10-27 04:52: the Moods
     // tab needs a search bar for finding a mood, like Plex
     // Amp's list but searchable. Typing filters the mood
     // cards below (and the vibe/genre cards too, same
@@ -256,7 +256,7 @@ fun FeelsScreen(
         val countsEmpty = counts.first.isEmpty() && counts.second.isEmpty() && counts.third.isEmpty() &&
             lib.serverMoods.isEmpty() && lib.serverVibes.isEmpty()
         // 1.3.6: Moods cards MUST render from counts even when
-        // tracks is empty in memory. Eric, 2026-10-26 23:28:
+        // tracks is empty in memory. 2026-10-26 23:28:
         // Moods page was blank — header only, no cards, no
         // loading, no retry — while a track was playing on the
         // right. That is exactly this state: counts were
