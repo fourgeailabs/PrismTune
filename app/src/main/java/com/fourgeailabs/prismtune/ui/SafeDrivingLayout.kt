@@ -24,10 +24,13 @@ import com.fourgeailabs.prismtune.data.SafeAreaConfig
  *    adjustable in Settings between 55% and 85%, hard-capped at 85%).
  *    No interactive element ever sits in the top-right quadrant
  *    (x > 80%, top ~12% of height).
- *  - The remaining right strip ([ambientContent]) is DISPLAY ONLY: large
- *    artwork, now-playing text, a visualizer-style glow. It contains NO
- *    buttons, NO sliders, NO text fields — nothing a driver could tap by
- *    accident, and nothing that needs a glance at the top-right corner.
+ *  - The remaining right strip ([ambientContent]) is DISPLAY ONLY
+ *    by default: large artwork, now-playing text, a visualizer-style
+ *    glow. 1.1.4 exception, at Eric's explicit request: the waveform
+ *    panel below the artwork may carry play/pause and next buttons
+ *    and may be tapped to open Now Playing. Those controls sit
+ *    below the artwork, in the lower right, never in the top-right
+ *    quadrant (x > 80%, top ~12%) where the temperature gauge is.
  *  - This zone is enforced SILENTLY by this layout. There is no top bar,
  *    no boundary badge, no clock, and no temperature/weather readout in
  *    the UI to explain it.
@@ -57,7 +60,7 @@ fun SafeDrivingLayout(
             modifier = Modifier
                 .fillMaxHeight()
                 .weight(1f)
-                .background(Color(0xFF0D0B08)),
+                .background(PrismSurface),
             content = ambientContent,
         )
     }

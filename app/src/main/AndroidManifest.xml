@@ -6,12 +6,38 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- 1.2.3: background playback needs a visible media
+         notification to stay foreground. Without this permission
+         on Android 13+, the media notification can be suppressed
+         and the system treats playback as a background app,
+         killing it after 30-60 seconds. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <!-- Android Automotive. Required=false so the APK can still be sideloaded
          for testing on a phone/tablet, but it declares itself as a car app. -->
     <uses-feature
         android:name="android.hardware.type.automotive"
         android:required="false" />
+
+    <!-- 1.0.5: Android 11+ package visibility. Without a <queries>
+         block, resolveActivity() for a browser VIEW intent returns
+         null on targetSdk 36 even when Chrome is installed, which is
+         why "Open sign-in in car browser" reported "No browser found"
+         on the Equinox while Chrome works in the car. This declares
+         the VIEW http/https intents and the Chrome package explicitly,
+         so that button can actually resolve a browser. The fallback
+         message stays for cars with genuinely no browser. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
+        </intent>
+        <package android:name="com.android.chrome" />
+    </queries>
 
     <application
         android:allowBackup="false"
@@ -21,18 +47,50 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrismTune">
 
-        <meta-data
-            android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc" />
-
-        <!-- Audio-only media session: car system + steering-wheel controls. -->
+        <!-- Audio-only media session: car system + steering-wheel controls.
+             1.2.2: the missing piece for "does not appear as a system
+             media option" and "steering wheel does nothing" was the
+             legacy MediaBrowserService action. Android Automotive's
+             media menu and steering-wheel routing find a media app
+             via android.media.browse.MediaBrowserService, not via
+             the Media3-only actions — those alone left PrismTune
+             invisible to the car system, so play/pause, next, and
+             previous from the wheel had no session to reach. -->
+        <!-- 1.5.0 MEDIA SOURCE: GM's infotainment media menu
+             (AM/FM/SiriusXM/Bluetooth/USB/Apple Music/News in
+             Eric's 2026-10-27 photo) lists MediaBrowserServices
+             it can browse. PrismTune was missing from that list
+             even after the 1.4.2 root fix, while cluster +
+             steering wheel worked — meaning the session was
+             active but the browser listing did not pick the
+             service up. Fixes here, without re-adding the
+             phone-projection car.application metadata that
+             blocked the 1.0.0 Play upload: (1) the legacy
+             MediaBrowserService action is now FIRST, so
+             browsers that stop at the first matching action
+             find it; (2) the service now carries its own
+             label + icon, so a browser that enumerates
+             services shows "PrismTune" instead of a blank
+             entry it may skip; (3) the root children are
+             browsable folders (1.4.2), not playable items,
+             so a browser can actually descend into them.
+             Honest limit: if GM's menu is a closed allow-list
+             (system apps + CarPlay only), no manifest change
+             in a third-party app can force a listing — that
+             would need GM/car-system approval, and Eric
+             should tell us if 1.5.0 still does not appear
+             after a car reboot, which re-scans services. -->
         <service
             android:name=".playback.PrismTuneMediaService"
             android:exported="true"
+            android:label="PrismTune"
+            android:icon="@mipmap/ic_launcher"
             android:foregroundServiceType="mediaPlayback"
             tools:ignore="ExportedService">
             <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
                 <action android:name="androidx.media3.session.MediaSessionService" />
+                <action android:name="androidx.media3.session.MediaLibraryService" />
             </intent-filter>
         </service>
 

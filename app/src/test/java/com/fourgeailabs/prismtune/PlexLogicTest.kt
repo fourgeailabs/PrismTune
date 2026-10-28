@@ -3,8 +3,11 @@ package com.fourgeailabs.prismtune
 import com.fourgeailabs.prismtune.data.ConnectionPicker
 import com.fourgeailabs.prismtune.data.EquinoxUsableArea
 import com.fourgeailabs.prismtune.data.PlexConnection
+import com.fourgeailabs.prismtune.data.PlexClient
 import com.fourgeailabs.prismtune.data.PlexUrls
 import com.fourgeailabs.prismtune.data.SafeAreaConfig
+import com.fourgeailabs.prismtune.data.SignInBrowser
+import okio.Buffer
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -47,10 +50,12 @@ class PlexLogicTest {
     }
 
     @Test
-    fun connectionPickerPrefersLocal() {
+    fun connectionPickerPrefersRemote() {
+        // 1.1.1, Eric's correction: remote is PRIMARY for a car,
+        // local is SECONDARY — the old local-first expectation is superseded.
         val remote = PlexConnection("https://remote.example:32400", local = false, protocol = "https")
         val local = PlexConnection("http://192.168.1.10:32400", local = true)
-        assertEquals(local, ConnectionPicker.pick(listOf(remote, local)))
+        assertEquals(remote, ConnectionPicker.pick(listOf(remote, local)))
         assertEquals(remote, ConnectionPicker.pick(listOf(remote)))
         assertNull(ConnectionPicker.pick(emptyList()))
     }
@@ -64,9 +69,33 @@ class PlexLogicTest {
 
     @Test
     fun qrLinkIsPlainPlexLink() {
-        // The QR must encode plain plex.tv/link — never a code-bearing
-        // URL, and never anything else. The code is shown as text to type.
+        // 1.0.3: weak 4-character PIN again. The QR encodes plain
+        // plex.tv/link, and the code shown is the code to type there.
         assertEquals("https://plex.tv/link", PlexUrls.LINK_URL)
+    }
+
+    @Test
+    fun pinRequestHasEmptyBodyAndNoStrongParameter() {
+        // The exact request createPin() sends: POST to the pins
+        // endpoint, empty body, no strong parameter of any kind.
+        // This is the pre-1.0.1 path proven to return a 4-char code.
+        val request = PlexClient.buildPinRequest("test-device-uuid")
+        assertEquals("https://plex.tv/api/v2/pins", request.url.toString())
+        assertEquals("POST", request.method)
+        val buffer = Buffer()
+        request.body?.writeTo(buffer)
+        assertEquals("", buffer.readUtf8())
+        assertEquals(0L, request.body?.contentLength())
+        assertEquals("prismtune-test-device-uuid", request.header("X-Plex-Client-Identifier"))
+    }
+
+    @Test
+    fun carBrowserTargetIsPlainPlexLink() {
+        // The in-car browser opens exactly the same page as the phone
+        // path — plain plex.tv/link, no code or token in the URL —
+        // preferring Chrome only if it resolves on the car.
+        assertEquals("https://plex.tv/link", SignInBrowser.targetUrl())
+        assertEquals("com.android.chrome", SignInBrowser.CHROME_PACKAGE)
     }
 
     @Test
